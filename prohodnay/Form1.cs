@@ -115,18 +115,19 @@ namespace prohodnay
             dataGridView4.DataSource = bs_vid_status;
         }
 
-        //void load_propusk()
-        //{
-        //    ds.Tables["PROPUSK"].Clear();
-        //    strSQL = " SELECT propusk.id_propusk AS 'id_Пропуска', propusk.num_propusk AS '№_Пропуска', " + 
-        //             " vid_status.name FROM propusk JOIN vid_status ON propusk.id_status = vid_status.id_status ";
-        //    SQLAdapter = new SqlDataAdapter(strSQL, cn);
+        void load_propusk()
+        {
+            ds.Tables["PROPUSK"].Clear();
+            strSQL = " SELECT propusk.id_propusk AS 'id_Пропуска', propusk.num_propusk AS '№_Пропуска', " +
+                     " vid_status.name AS 'Статус' FROM propusk JOIN vid_status ON propusk.id_status = " + 
+                     " vid_status.id_status ";
+            SQLAdapter = new SqlDataAdapter(strSQL, cn);
 
-        //    SQLAdapter.Fill(ds, "PROPUSK");
+            SQLAdapter.Fill(ds, "PROPUSK");
 
-        //    bs_propusk.DataSource = ds.Tables["PROPUSK"];
-        //    dataGridView4.DataSource = bs_propusk;
-        //}
+            bs_propusk.DataSource = ds.Tables["PROPUSK"];
+            dataGridView8.DataSource = bs_propusk;
+        }
 
         //void load_sotrudnik()                   // функция для отображения информации
         //{
@@ -220,9 +221,9 @@ namespace prohodnay
 
         //void spravochnik_reload_f()
         //{
-        //    comboBox_signature_tip_attack_f.DataSource = bs_tip_attack;
-        //    comboBox_signature_tip_attack_f.DisplayMember = "Тип_атаки";
-        //    comboBox_signature_tip_attack_f.ValueMember = "№_Типа_атаки";
+        //    combobox_signature_tip_attack_f.datasource = bs_tip_attack;
+        //    combobox_signature_tip_attack_f.displaymember = "тип_атаки";
+        //    combobox_signature_tip_attack_f.valuemember = "№_типа_атаки";
 
         //    comboBox_signature_protocol_f.DataSource = bs_protocol;
         //    comboBox_signature_protocol_f.DisplayMember = "Протокол";
@@ -309,11 +310,12 @@ namespace prohodnay
           
             //
             // --- [ ЗАГРУЗКА ] ---   СОТРУДНИК ----------------------------------------------------
-            //ds.Tables.Add("OS");
-            //load_sotrudnik();
-            //dataGridView2.SelectionMode = DataGridViewSelectionMode.FullRowSelect;
-            //dataGridView2.AutoSizeColumnsMode = DataGridViewAutoSizeColumnsMode.Fill;
-            //textBox_sotrudnik_name.DataBindings.Add(new Binding("Text", bs_sotrudnik, "Операционная_система", false, DataSourceUpdateMode.Never));
+            ds.Tables.Add("PROPUSK");
+            load_propusk();
+            dataGridView8.SelectionMode = DataGridViewSelectionMode.FullRowSelect;
+            dataGridView8.AutoSizeColumnsMode = DataGridViewAutoSizeColumnsMode.Fill;
+            textBox_propusk_num.DataBindings.Add(new Binding("Text", bs_propusk, "№_Пропуска", false, DataSourceUpdateMode.Never));
+            comboBox_propusk_status.DataBindings.Add(new Binding("Text", bs_propusk, "Статус", false, DataSourceUpdateMode.Never));
             // --------------------------------------------------------------------------------------
             
             //
@@ -351,6 +353,14 @@ namespace prohodnay
             //dataGridView1.AutoSizeColumnsMode = DataGridViewAutoSizeColumnsMode.Fill;
             //textBox_service_name.DataBindings.Add(new Binding("Text", bs_service, "Сервис", false, DataSourceUpdateMode.Never));
             //// --------------------------------------------------------------------------------------
+
+            comboBox_propusk_status.DataSource = bs_vid_status;
+            comboBox_propusk_status.DisplayMember = "Вид_статуса";
+            comboBox_propusk_status.ValueMember = "id_Статуса";
+
+            //object[] list_status = { "Свободен", "Занят", "Утерян", "Брак" };
+            //comboBox_propusk_status.Items.AddRange(list_status);
+
         }
 
         private void button15_Click(object sender, EventArgs e)
@@ -938,18 +948,18 @@ namespace prohodnay
                 return;
             }
             // запрос на добавление
-            strSQL = "INSERT INTO propusk VALUES (@NAME, @STATUS)";
+            strSQL = "INSERT INTO propusk VALUES (@ID_S, @NUM)";
 
             // работаем через адаптер и свойство добавления
             SQLAdapter.InsertCommand = new SqlCommand(strSQL, cn);  // новая команда создана
             // определим параметры и зададим им значения
-            SQLAdapter.InsertCommand.Parameters.Add("@NAME", SqlDbType.VarChar).Value = textBox_propusk_num.Text;
-            SQLAdapter.InsertCommand.Parameters.Add("@STATUS", SqlDbType.Int).Value = comboBox_propusk_status.SelectedValue;
+            SQLAdapter.InsertCommand.Parameters.Add("@ID_S", SqlDbType.Int).Value = comboBox_propusk_status.SelectedValue;
+            SQLAdapter.InsertCommand.Parameters.Add("@NUM", SqlDbType.VarChar).Value = textBox_propusk_num.Text;
             try
             {
                 SQLAdapter.InsertCommand.ExecuteNonQuery(); // выполним запрос
                 // если удачно то...
-                //load_propusk();          // обновим таблицу
+                load_propusk();          // обновим таблицу
                 MessageBox.Show("Успешно добавлен!", "Добавление", MessageBoxButtons.OK, MessageBoxIcon.Information);
             }
             catch (Exception ex)
@@ -961,77 +971,78 @@ namespace prohodnay
 
         private void button27_Click(object sender, EventArgs e)
         {
-            //// --- [ ОБНОВЛЕНИЕ ] ---   ТИП АТАКИ
+            // --- [ ОБНОВЛЕНИЕ ] ---   ПРОПУСК
 
-            //if (ds.Tables["TIP_ATTACK"].Rows.Count > 0)              // проверка на наличие строк в таблице
-            //{
-            //    // проверим все поля на заполненность
-            //    if (textBox_propusk_num.Text == "")
-            //    {
-            //        MessageBox.Show("Заполните все поля", "Обновление", MessageBoxButtons.OK, MessageBoxIcon.Warning);
-            //        return;
-            //    }
+            if (ds.Tables["PROPUSK"].Rows.Count > 0)              // проверка на наличие строк в таблице
+            {
+                // проверим все поля на заполненность
+                if (textBox_propusk_num.Text == "" || comboBox_propusk_status.Text == "")
+                {
+                    MessageBox.Show("Заполните все поля", "Обновление", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                    return;
+                }
 
-            //    // запрос на обновление
-            //    strSQL = " UPDATE tip_attack SET name = @NAME WHERE id_tip_attack = @ID_A ";
+                // запрос на обновление
+                strSQL = " UPDATE propusk SET num_propusk = @NUM, id_status = @ID_S WHERE id_propusk = @ID_P ";
 
-            //    SQLAdapter.UpdateCommand = new SqlCommand(strSQL, cn);  // команда для обноления создана
-            //    // зададим значения параметрам 
-            //    SQLAdapter.UpdateCommand.Parameters.Add("@NAME", SqlDbType.VarChar).Value = textBox_propusk_num.Text;
-            //    SQLAdapter.UpdateCommand.Parameters.Add("@ID_A", SqlDbType.Int).Value =
-            //        Convert.ToInt32(ds.Tables["TIP_ATTACK"].Rows[dataGridView8.CurrentRow.Index][0]);
-            //    try
-            //    {
-            //        SQLAdapter.UpdateCommand.ExecuteNonQuery(); // выполним запрос
-            //        // если удачно то...
-            //        load_tip_attack();           // обновим таблицу
-            //        MessageBox.Show("Запись успешно обновлена!", "Обновление", MessageBoxButtons.OK, MessageBoxIcon.Information);
-            //    }
-            //    catch (Exception ex)
-            //    {
-            //        // если запрос выполнился не удачно то ошибка с инфой
-            //        MessageBox.Show(ex.Message, "Ошибка", MessageBoxButtons.OK, MessageBoxIcon.Information);
-            //    }
-            //}
-            //else
-            //    MessageBox.Show("Таблица пуста", "Обновление", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                SQLAdapter.UpdateCommand = new SqlCommand(strSQL, cn);  // команда для обноления создана
+                // зададим значения параметрам 
+                SQLAdapter.UpdateCommand.Parameters.Add("@ID_S", SqlDbType.VarChar).Value = comboBox_propusk_status.SelectedValue;
+                SQLAdapter.UpdateCommand.Parameters.Add("@NUM", SqlDbType.VarChar).Value = textBox_propusk_num.Text;
+                SQLAdapter.UpdateCommand.Parameters.Add("@ID_P", SqlDbType.Int).Value =
+                    Convert.ToInt32(ds.Tables["PROPUSK"].Rows[dataGridView8.CurrentRow.Index][0]);
+                try
+                {
+                    SQLAdapter.UpdateCommand.ExecuteNonQuery(); // выполним запрос
+                    // если удачно то...
+                    load_propusk();           // обновим таблицу
+                    MessageBox.Show("Запись успешно обновлена!", "Обновление", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                }
+                catch (Exception ex)
+                {
+                    // если запрос выполнился не удачно то ошибка с инфой
+                    MessageBox.Show(ex.Message, "Ошибка", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                }
+            }
+            else
+                MessageBox.Show("Таблица пуста", "Обновление", MessageBoxButtons.OK, MessageBoxIcon.Information);
         }
 
         private void button26_Click(object sender, EventArgs e)
         {
-            //// --- [ УДАЛЕНИЕ ВЫБРАННЫХ ] ---   ТИП АТАКИ
+            // --- [ УДАЛЕНИЕ ВЫБРАННЫХ ] ---   ТИП АТАКИ
 
-            //if (ds.Tables["TIP_ATTACK"].Rows.Count > 0)              // проверка на наличие строк в таблице
-            //{
-            //    strSQL = " DELETE FROM tip_attack WHERE id_tip_attack = @ID_A ";
+            if (ds.Tables["PROPUSK"].Rows.Count > 0)              // проверка на наличие строк в таблице
+            {
+                strSQL = " DELETE FROM propusk WHERE id_propusk = @ID_P ";
 
-            //    SQLAdapter.DeleteCommand = new SqlCommand(strSQL, cn);
-            //    // Если нажата кномка да, удаления не избежать.
-            //    if (DialogResult.Yes == MessageBox.Show("Вы уверены в удалении? \nЗаписей:  "
-            //        + dataGridView8.SelectedRows.Count.ToString(), "Удаление", MessageBoxButtons.YesNo,
-            //        MessageBoxIcon.Question, MessageBoxDefaultButton.Button1))
-            //    {
-            //        try
-            //        {
-            //            foreach (DataGridViewRow drv in dataGridView8.SelectedRows)
-            //            {
-            //                SQLAdapter.DeleteCommand.Parameters.Add("@ID_A", SqlDbType.Int).Value =
-            //                    Convert.ToInt32(ds.Tables["TIP_ATTACK"].Rows[drv.Index][0]);
+                SQLAdapter.DeleteCommand = new SqlCommand(strSQL, cn);
+                // Если нажата кномка да, удаления не избежать.
+                if (DialogResult.Yes == MessageBox.Show("Вы уверены в удалении? \nЗаписей:  "
+                    + dataGridView8.SelectedRows.Count.ToString(), "Удаление", MessageBoxButtons.YesNo,
+                    MessageBoxIcon.Question, MessageBoxDefaultButton.Button1))
+                {
+                    try
+                    {
+                        foreach (DataGridViewRow drv in dataGridView8.SelectedRows)
+                        {
+                            SQLAdapter.DeleteCommand.Parameters.Add("@ID_P", SqlDbType.Int).Value =
+                                Convert.ToInt32(ds.Tables["PROPUSK"].Rows[drv.Index][0]);
 
-            //                SQLAdapter.DeleteCommand.ExecuteNonQuery();
-            //                SQLAdapter.DeleteCommand.Parameters.Clear();
-            //            }
-            //            load_tip_attack();           // обновим таблицу
-            //            MessageBox.Show("Успешно удалено!", "Удаление", MessageBoxButtons.OK, MessageBoxIcon.Information);
-            //        }
-            //        catch (Exception ex)
-            //        {
-            //            MessageBox.Show(ex.Message, "Ошибка", MessageBoxButtons.OK, MessageBoxIcon.Information);
-            //        }
-            //    }
-            //}
-            //else
-            //    MessageBox.Show("Таблица пуста", "Удаление", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                            SQLAdapter.DeleteCommand.ExecuteNonQuery();
+                            SQLAdapter.DeleteCommand.Parameters.Clear();
+                        }
+                        load_propusk();           // обновим таблицу
+                        MessageBox.Show("Успешно удалено!", "Удаление", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                    }
+                    catch (Exception ex)
+                    {
+                        MessageBox.Show(ex.Message, "Ошибка", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                    }
+                }
+            }
+            else
+                MessageBox.Show("Таблица пуста", "Удаление", MessageBoxButtons.OK, MessageBoxIcon.Information);
         }
 
         private void button3_Click(object sender, EventArgs e)
