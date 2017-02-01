@@ -28,14 +28,11 @@
         /// </summary>
         private void InitializeComponent()
         {
-            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(Form1));
             this.button19 = new System.Windows.Forms.Button();
             this.button18 = new System.Windows.Forms.Button();
             this.panel1 = new System.Windows.Forms.Panel();
             this.tabControl2 = new System.Windows.Forms.TabControl();
             this.tabPage_priem_otpusk = new System.Windows.Forms.TabPage();
-            this.tabControl1 = new System.Windows.Forms.TabControl();
-            this.tabPage3 = new System.Windows.Forms.TabPage();
             this.button7 = new System.Windows.Forms.Button();
             this.groupBox3 = new System.Windows.Forms.GroupBox();
             this.comboBox_signature_protocol = new System.Windows.Forms.ComboBox();
@@ -49,21 +46,6 @@
             this.label8 = new System.Windows.Forms.Label();
             this.label9 = new System.Windows.Forms.Label();
             this.dataGridView3 = new System.Windows.Forms.DataGridView();
-            this.tabPage5 = new System.Windows.Forms.TabPage();
-            this.groupBox8 = new System.Windows.Forms.GroupBox();
-            this.checkBox_os = new System.Windows.Forms.CheckBox();
-            this.comboBox_signature_service_f = new System.Windows.Forms.ComboBox();
-            this.checkBox_service = new System.Windows.Forms.CheckBox();
-            this.label3 = new System.Windows.Forms.Label();
-            this.checkBox_protocol = new System.Windows.Forms.CheckBox();
-            this.checkBox_tip_attack = new System.Windows.Forms.CheckBox();
-            this.comboBox_signature_os_f = new System.Windows.Forms.ComboBox();
-            this.label5 = new System.Windows.Forms.Label();
-            this.comboBox_signature_tip_attack_f = new System.Windows.Forms.ComboBox();
-            this.label4 = new System.Windows.Forms.Label();
-            this.comboBox_signature_protocol_f = new System.Windows.Forms.ComboBox();
-            this.label6 = new System.Windows.Forms.Label();
-            this.dataGridView5 = new System.Windows.Forms.DataGridView();
             this.tabPage_sprav = new System.Windows.Forms.TabPage();
             this.tabControl3 = new System.Windows.Forms.TabControl();
             this.tabPage9 = new System.Windows.Forms.TabPage();
@@ -71,33 +53,27 @@
             this.groupBox2 = new System.Windows.Forms.GroupBox();
             this.button5 = new System.Windows.Forms.Button();
             this.button6 = new System.Windows.Forms.Button();
-            this.textBox_os_name = new System.Windows.Forms.TextBox();
+            this.textBox_sotrudnik_name = new System.Windows.Forms.TextBox();
             this.label2 = new System.Windows.Forms.Label();
             this.dataGridView2 = new System.Windows.Forms.DataGridView();
             this.tabPage2 = new System.Windows.Forms.TabPage();
             this.button26 = new System.Windows.Forms.Button();
             this.groupBox7 = new System.Windows.Forms.GroupBox();
+            this.comboBox_propusk_status = new System.Windows.Forms.ComboBox();
+            this.label1 = new System.Windows.Forms.Label();
             this.button27 = new System.Windows.Forms.Button();
             this.button28 = new System.Windows.Forms.Button();
-            this.textBox_tip_attack_name = new System.Windows.Forms.TextBox();
+            this.textBox_propusk_num = new System.Windows.Forms.TextBox();
             this.label11 = new System.Windows.Forms.Label();
             this.dataGridView8 = new System.Windows.Forms.DataGridView();
             this.tabPage10 = new System.Windows.Forms.TabPage();
             this.button10 = new System.Windows.Forms.Button();
             this.groupBox4 = new System.Windows.Forms.GroupBox();
-            this.textBox_protocol_name = new System.Windows.Forms.TextBox();
+            this.textBox_status_propusk_name = new System.Windows.Forms.TextBox();
             this.label19 = new System.Windows.Forms.Label();
             this.button11 = new System.Windows.Forms.Button();
             this.button12 = new System.Windows.Forms.Button();
             this.dataGridView4 = new System.Windows.Forms.DataGridView();
-            this.tabPage4 = new System.Windows.Forms.TabPage();
-            this.button1 = new System.Windows.Forms.Button();
-            this.groupBox6 = new System.Windows.Forms.GroupBox();
-            this.textBox_service_name = new System.Windows.Forms.TextBox();
-            this.label1 = new System.Windows.Forms.Label();
-            this.button2 = new System.Windows.Forms.Button();
-            this.button3 = new System.Windows.Forms.Button();
-            this.dataGridView1 = new System.Windows.Forms.DataGridView();
             this.tabPage_nastroi = new System.Windows.Forms.TabPage();
             this.groupBox10 = new System.Windows.Forms.GroupBox();
             this.dataGridView_polzov = new System.Windows.Forms.DataGridView();
@@ -128,16 +104,13 @@
             this.label40 = new System.Windows.Forms.Label();
             this.textBox_smena_oldpas = new System.Windows.Forms.TextBox();
             this.label41 = new System.Windows.Forms.Label();
+            this.comboBox1 = new System.Windows.Forms.ComboBox();
+            this.label3 = new System.Windows.Forms.Label();
             this.panel1.SuspendLayout();
             this.tabControl2.SuspendLayout();
             this.tabPage_priem_otpusk.SuspendLayout();
-            this.tabControl1.SuspendLayout();
-            this.tabPage3.SuspendLayout();
             this.groupBox3.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.dataGridView3)).BeginInit();
-            this.tabPage5.SuspendLayout();
-            this.groupBox8.SuspendLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.dataGridView5)).BeginInit();
             this.tabPage_sprav.SuspendLayout();
             this.tabControl3.SuspendLayout();
             this.tabPage9.SuspendLayout();
@@ -149,9 +122,6 @@
             this.tabPage10.SuspendLayout();
             this.groupBox4.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.dataGridView4)).BeginInit();
-            this.tabPage4.SuspendLayout();
-            this.groupBox6.SuspendLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.dataGridView1)).BeginInit();
             this.tabPage_nastroi.SuspendLayout();
             this.groupBox10.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.dataGridView_polzov)).BeginInit();
@@ -209,53 +179,27 @@
             // 
             // tabPage_priem_otpusk
             // 
-            this.tabPage_priem_otpusk.Controls.Add(this.tabControl1);
+            this.tabPage_priem_otpusk.Controls.Add(this.button7);
+            this.tabPage_priem_otpusk.Controls.Add(this.groupBox3);
+            this.tabPage_priem_otpusk.Controls.Add(this.dataGridView3);
             this.tabPage_priem_otpusk.Location = new System.Drawing.Point(4, 34);
             this.tabPage_priem_otpusk.Name = "tabPage_priem_otpusk";
             this.tabPage_priem_otpusk.Padding = new System.Windows.Forms.Padding(3);
             this.tabPage_priem_otpusk.Size = new System.Drawing.Size(1083, 633);
             this.tabPage_priem_otpusk.TabIndex = 0;
-            this.tabPage_priem_otpusk.Text = "Сигнатуры/Фильтрация";
+            this.tabPage_priem_otpusk.Text = "Журнал посещений";
             this.tabPage_priem_otpusk.UseVisualStyleBackColor = true;
-            // 
-            // tabControl1
-            // 
-            this.tabControl1.Controls.Add(this.tabPage3);
-            this.tabControl1.Controls.Add(this.tabPage5);
-            this.tabControl1.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.tabControl1.ItemSize = new System.Drawing.Size(150, 25);
-            this.tabControl1.Location = new System.Drawing.Point(3, 3);
-            this.tabControl1.Name = "tabControl1";
-            this.tabControl1.SelectedIndex = 0;
-            this.tabControl1.Size = new System.Drawing.Size(1077, 627);
-            this.tabControl1.SizeMode = System.Windows.Forms.TabSizeMode.Fixed;
-            this.tabControl1.TabIndex = 1;
-            // 
-            // tabPage3
-            // 
-            this.tabPage3.Controls.Add(this.button7);
-            this.tabPage3.Controls.Add(this.groupBox3);
-            this.tabPage3.Controls.Add(this.dataGridView3);
-            this.tabPage3.Location = new System.Drawing.Point(4, 29);
-            this.tabPage3.Name = "tabPage3";
-            this.tabPage3.Padding = new System.Windows.Forms.Padding(3);
-            this.tabPage3.Size = new System.Drawing.Size(1069, 594);
-            this.tabPage3.TabIndex = 2;
-            this.tabPage3.Text = "Сигнатуры";
-            this.tabPage3.UseVisualStyleBackColor = true;
-            this.tabPage3.Enter += new System.EventHandler(this.tabPage3_Enter);
             // 
             // button7
             // 
             this.button7.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
             this.button7.Cursor = System.Windows.Forms.Cursors.Default;
-            this.button7.Location = new System.Drawing.Point(957, 281);
+            this.button7.Location = new System.Drawing.Point(971, 281);
             this.button7.Name = "button7";
             this.button7.Size = new System.Drawing.Size(100, 23);
-            this.button7.TabIndex = 11;
+            this.button7.TabIndex = 14;
             this.button7.Text = "Удалить";
             this.button7.UseVisualStyleBackColor = true;
-            this.button7.Click += new System.EventHandler(this.button7_Click);
             // 
             // groupBox3
             // 
@@ -270,10 +214,10 @@
             this.groupBox3.Controls.Add(this.label20);
             this.groupBox3.Controls.Add(this.label8);
             this.groupBox3.Controls.Add(this.label9);
-            this.groupBox3.Location = new System.Drawing.Point(871, 6);
+            this.groupBox3.Location = new System.Drawing.Point(885, 6);
             this.groupBox3.Name = "groupBox3";
             this.groupBox3.Size = new System.Drawing.Size(192, 269);
-            this.groupBox3.TabIndex = 10;
+            this.groupBox3.TabIndex = 13;
             this.groupBox3.TabStop = false;
             this.groupBox3.Text = "Добавление/Фильтрация";
             // 
@@ -327,7 +271,6 @@
             this.button9.TabIndex = 7;
             this.button9.Text = "Добавить";
             this.button9.UseVisualStyleBackColor = true;
-            this.button9.Click += new System.EventHandler(this.button9_Click);
             // 
             // comboBox_signature_service
             // 
@@ -374,170 +317,8 @@
             this.dataGridView3.Location = new System.Drawing.Point(6, 6);
             this.dataGridView3.Name = "dataGridView3";
             this.dataGridView3.ReadOnly = true;
-            this.dataGridView3.Size = new System.Drawing.Size(859, 582);
-            this.dataGridView3.TabIndex = 1;
-            // 
-            // tabPage5
-            // 
-            this.tabPage5.Controls.Add(this.groupBox8);
-            this.tabPage5.Controls.Add(this.dataGridView5);
-            this.tabPage5.Location = new System.Drawing.Point(4, 29);
-            this.tabPage5.Name = "tabPage5";
-            this.tabPage5.Padding = new System.Windows.Forms.Padding(3);
-            this.tabPage5.Size = new System.Drawing.Size(1069, 594);
-            this.tabPage5.TabIndex = 4;
-            this.tabPage5.Text = "Фильтрация";
-            this.tabPage5.UseVisualStyleBackColor = true;
-            this.tabPage5.Enter += new System.EventHandler(this.tabPage5_Enter);
-            // 
-            // groupBox8
-            // 
-            this.groupBox8.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
-            | System.Windows.Forms.AnchorStyles.Right)));
-            this.groupBox8.Controls.Add(this.checkBox_os);
-            this.groupBox8.Controls.Add(this.comboBox_signature_service_f);
-            this.groupBox8.Controls.Add(this.checkBox_service);
-            this.groupBox8.Controls.Add(this.label3);
-            this.groupBox8.Controls.Add(this.checkBox_protocol);
-            this.groupBox8.Controls.Add(this.checkBox_tip_attack);
-            this.groupBox8.Controls.Add(this.comboBox_signature_os_f);
-            this.groupBox8.Controls.Add(this.label5);
-            this.groupBox8.Controls.Add(this.comboBox_signature_tip_attack_f);
-            this.groupBox8.Controls.Add(this.label4);
-            this.groupBox8.Controls.Add(this.comboBox_signature_protocol_f);
-            this.groupBox8.Controls.Add(this.label6);
-            this.groupBox8.Location = new System.Drawing.Point(6, 6);
-            this.groupBox8.Name = "groupBox8";
-            this.groupBox8.Size = new System.Drawing.Size(1057, 79);
-            this.groupBox8.TabIndex = 25;
-            this.groupBox8.TabStop = false;
-            this.groupBox8.Text = "Фильтрация сигнатуры";
-            // 
-            // checkBox_os
-            // 
-            this.checkBox_os.AutoSize = true;
-            this.checkBox_os.Location = new System.Drawing.Point(603, 22);
-            this.checkBox_os.Name = "checkBox_os";
-            this.checkBox_os.Size = new System.Drawing.Size(15, 14);
-            this.checkBox_os.TabIndex = 30;
-            this.checkBox_os.UseVisualStyleBackColor = true;
-            this.checkBox_os.CheckedChanged += new System.EventHandler(this.checkBox_os_CheckedChanged);
-            // 
-            // comboBox_signature_service_f
-            // 
-            this.comboBox_signature_service_f.FormattingEnabled = true;
-            this.comboBox_signature_service_f.Location = new System.Drawing.Point(404, 42);
-            this.comboBox_signature_service_f.Name = "comboBox_signature_service_f";
-            this.comboBox_signature_service_f.Size = new System.Drawing.Size(177, 21);
-            this.comboBox_signature_service_f.TabIndex = 43;
-            this.comboBox_signature_service_f.SelectedIndexChanged += new System.EventHandler(this.comboBox_signature_service_f_SelectedIndexChanged);
-            // 
-            // checkBox_service
-            // 
-            this.checkBox_service.AutoSize = true;
-            this.checkBox_service.Location = new System.Drawing.Point(404, 22);
-            this.checkBox_service.Name = "checkBox_service";
-            this.checkBox_service.Size = new System.Drawing.Size(15, 14);
-            this.checkBox_service.TabIndex = 29;
-            this.checkBox_service.UseVisualStyleBackColor = true;
-            this.checkBox_service.CheckedChanged += new System.EventHandler(this.checkBox_service_CheckedChanged);
-            // 
-            // label3
-            // 
-            this.label3.AutoSize = true;
-            this.label3.Location = new System.Drawing.Point(425, 22);
-            this.label3.Name = "label3";
-            this.label3.Size = new System.Drawing.Size(44, 13);
-            this.label3.TabIndex = 42;
-            this.label3.Text = "Сервис";
-            // 
-            // checkBox_protocol
-            // 
-            this.checkBox_protocol.AutoSize = true;
-            this.checkBox_protocol.Location = new System.Drawing.Point(206, 22);
-            this.checkBox_protocol.Name = "checkBox_protocol";
-            this.checkBox_protocol.Size = new System.Drawing.Size(15, 14);
-            this.checkBox_protocol.TabIndex = 28;
-            this.checkBox_protocol.UseVisualStyleBackColor = true;
-            this.checkBox_protocol.CheckedChanged += new System.EventHandler(this.checkBox_protocol_CheckedChanged);
-            // 
-            // checkBox_tip_attack
-            // 
-            this.checkBox_tip_attack.AutoSize = true;
-            this.checkBox_tip_attack.Location = new System.Drawing.Point(7, 22);
-            this.checkBox_tip_attack.Name = "checkBox_tip_attack";
-            this.checkBox_tip_attack.Size = new System.Drawing.Size(15, 14);
-            this.checkBox_tip_attack.TabIndex = 27;
-            this.checkBox_tip_attack.UseVisualStyleBackColor = true;
-            this.checkBox_tip_attack.CheckedChanged += new System.EventHandler(this.checkBox_tip_attack_CheckedChanged);
-            // 
-            // comboBox_signature_os_f
-            // 
-            this.comboBox_signature_os_f.FormattingEnabled = true;
-            this.comboBox_signature_os_f.Location = new System.Drawing.Point(603, 42);
-            this.comboBox_signature_os_f.Name = "comboBox_signature_os_f";
-            this.comboBox_signature_os_f.Size = new System.Drawing.Size(177, 21);
-            this.comboBox_signature_os_f.TabIndex = 44;
-            this.comboBox_signature_os_f.SelectedIndexChanged += new System.EventHandler(this.comboBox_signature_os_f_SelectedIndexChanged);
-            // 
-            // label5
-            // 
-            this.label5.AutoSize = true;
-            this.label5.Location = new System.Drawing.Point(624, 22);
-            this.label5.Name = "label5";
-            this.label5.Size = new System.Drawing.Size(127, 13);
-            this.label5.TabIndex = 41;
-            this.label5.Text = "Операционная система";
-            // 
-            // comboBox_signature_tip_attack_f
-            // 
-            this.comboBox_signature_tip_attack_f.FormattingEnabled = true;
-            this.comboBox_signature_tip_attack_f.Location = new System.Drawing.Point(7, 42);
-            this.comboBox_signature_tip_attack_f.Name = "comboBox_signature_tip_attack_f";
-            this.comboBox_signature_tip_attack_f.Size = new System.Drawing.Size(177, 21);
-            this.comboBox_signature_tip_attack_f.TabIndex = 37;
-            this.comboBox_signature_tip_attack_f.SelectedIndexChanged += new System.EventHandler(this.comboBox_signature_tip_attack_f_SelectedIndexChanged);
-            // 
-            // label4
-            // 
-            this.label4.AutoSize = true;
-            this.label4.Location = new System.Drawing.Point(28, 22);
-            this.label4.Name = "label4";
-            this.label4.Size = new System.Drawing.Size(58, 13);
-            this.label4.TabIndex = 34;
-            this.label4.Text = "Тип атаки";
-            // 
-            // comboBox_signature_protocol_f
-            // 
-            this.comboBox_signature_protocol_f.FormattingEnabled = true;
-            this.comboBox_signature_protocol_f.Location = new System.Drawing.Point(206, 42);
-            this.comboBox_signature_protocol_f.Name = "comboBox_signature_protocol_f";
-            this.comboBox_signature_protocol_f.Size = new System.Drawing.Size(177, 21);
-            this.comboBox_signature_protocol_f.TabIndex = 38;
-            this.comboBox_signature_protocol_f.SelectedIndexChanged += new System.EventHandler(this.comboBox_signature_protocol_f_SelectedIndexChanged);
-            // 
-            // label6
-            // 
-            this.label6.AutoSize = true;
-            this.label6.Location = new System.Drawing.Point(227, 22);
-            this.label6.Name = "label6";
-            this.label6.Size = new System.Drawing.Size(56, 13);
-            this.label6.TabIndex = 31;
-            this.label6.Text = "Протокол";
-            // 
-            // dataGridView5
-            // 
-            this.dataGridView5.AllowUserToAddRows = false;
-            this.dataGridView5.AllowUserToDeleteRows = false;
-            this.dataGridView5.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
-            | System.Windows.Forms.AnchorStyles.Left) 
-            | System.Windows.Forms.AnchorStyles.Right)));
-            this.dataGridView5.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-            this.dataGridView5.Location = new System.Drawing.Point(6, 91);
-            this.dataGridView5.Name = "dataGridView5";
-            this.dataGridView5.ReadOnly = true;
-            this.dataGridView5.Size = new System.Drawing.Size(1057, 497);
-            this.dataGridView5.TabIndex = 24;
+            this.dataGridView3.Size = new System.Drawing.Size(873, 621);
+            this.dataGridView3.TabIndex = 12;
             // 
             // tabPage_sprav
             // 
@@ -555,7 +336,6 @@
             this.tabControl3.Controls.Add(this.tabPage9);
             this.tabControl3.Controls.Add(this.tabPage2);
             this.tabControl3.Controls.Add(this.tabPage10);
-            this.tabControl3.Controls.Add(this.tabPage4);
             this.tabControl3.Dock = System.Windows.Forms.DockStyle.Fill;
             this.tabControl3.ItemSize = new System.Drawing.Size(150, 25);
             this.tabControl3.Location = new System.Drawing.Point(3, 3);
@@ -575,13 +355,13 @@
             this.tabPage9.Padding = new System.Windows.Forms.Padding(3);
             this.tabPage9.Size = new System.Drawing.Size(1069, 594);
             this.tabPage9.TabIndex = 1;
-            this.tabPage9.Text = "Операционные системы";
+            this.tabPage9.Text = "Сотрудники";
             this.tabPage9.UseVisualStyleBackColor = true;
             // 
             // button4
             // 
             this.button4.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
-            this.button4.Location = new System.Drawing.Point(957, 143);
+            this.button4.Location = new System.Drawing.Point(957, 218);
             this.button4.Name = "button4";
             this.button4.Size = new System.Drawing.Size(100, 23);
             this.button4.TabIndex = 19;
@@ -592,20 +372,22 @@
             // groupBox2
             // 
             this.groupBox2.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
+            this.groupBox2.Controls.Add(this.comboBox1);
+            this.groupBox2.Controls.Add(this.label3);
             this.groupBox2.Controls.Add(this.button5);
             this.groupBox2.Controls.Add(this.button6);
-            this.groupBox2.Controls.Add(this.textBox_os_name);
+            this.groupBox2.Controls.Add(this.textBox_sotrudnik_name);
             this.groupBox2.Controls.Add(this.label2);
             this.groupBox2.Location = new System.Drawing.Point(800, 6);
             this.groupBox2.Name = "groupBox2";
-            this.groupBox2.Size = new System.Drawing.Size(263, 131);
+            this.groupBox2.Size = new System.Drawing.Size(263, 206);
             this.groupBox2.TabIndex = 18;
             this.groupBox2.TabStop = false;
             this.groupBox2.Text = "Добавление/Обновление";
             // 
             // button5
             // 
-            this.button5.Location = new System.Drawing.Point(157, 93);
+            this.button5.Location = new System.Drawing.Point(157, 171);
             this.button5.Name = "button5";
             this.button5.Size = new System.Drawing.Size(100, 23);
             this.button5.TabIndex = 8;
@@ -615,7 +397,7 @@
             // 
             // button6
             // 
-            this.button6.Location = new System.Drawing.Point(157, 64);
+            this.button6.Location = new System.Drawing.Point(157, 142);
             this.button6.Name = "button6";
             this.button6.Size = new System.Drawing.Size(100, 23);
             this.button6.TabIndex = 7;
@@ -623,21 +405,21 @@
             this.button6.UseVisualStyleBackColor = true;
             this.button6.Click += new System.EventHandler(this.button6_Click);
             // 
-            // textBox_os_name
+            // textBox_sotrudnik_name
             // 
-            this.textBox_os_name.Location = new System.Drawing.Point(10, 38);
-            this.textBox_os_name.Name = "textBox_os_name";
-            this.textBox_os_name.Size = new System.Drawing.Size(247, 20);
-            this.textBox_os_name.TabIndex = 2;
+            this.textBox_sotrudnik_name.Location = new System.Drawing.Point(10, 38);
+            this.textBox_sotrudnik_name.Name = "textBox_sotrudnik_name";
+            this.textBox_sotrudnik_name.Size = new System.Drawing.Size(247, 20);
+            this.textBox_sotrudnik_name.TabIndex = 2;
             // 
             // label2
             // 
             this.label2.AutoSize = true;
             this.label2.Location = new System.Drawing.Point(7, 22);
             this.label2.Name = "label2";
-            this.label2.Size = new System.Drawing.Size(127, 13);
+            this.label2.Size = new System.Drawing.Size(34, 13);
             this.label2.TabIndex = 1;
-            this.label2.Text = "Операционная система";
+            this.label2.Text = "ФИО";
             // 
             // dataGridView2
             // 
@@ -663,13 +445,13 @@
             this.tabPage2.Padding = new System.Windows.Forms.Padding(3);
             this.tabPage2.Size = new System.Drawing.Size(1069, 594);
             this.tabPage2.TabIndex = 3;
-            this.tabPage2.Text = "Тип атаки";
+            this.tabPage2.Text = "Пропуск";
             this.tabPage2.UseVisualStyleBackColor = true;
             // 
             // button26
             // 
             this.button26.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
-            this.button26.Location = new System.Drawing.Point(957, 143);
+            this.button26.Location = new System.Drawing.Point(957, 191);
             this.button26.Name = "button26";
             this.button26.Size = new System.Drawing.Size(100, 23);
             this.button26.TabIndex = 17;
@@ -680,20 +462,39 @@
             // groupBox7
             // 
             this.groupBox7.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
+            this.groupBox7.Controls.Add(this.comboBox_propusk_status);
+            this.groupBox7.Controls.Add(this.label1);
             this.groupBox7.Controls.Add(this.button27);
             this.groupBox7.Controls.Add(this.button28);
-            this.groupBox7.Controls.Add(this.textBox_tip_attack_name);
+            this.groupBox7.Controls.Add(this.textBox_propusk_num);
             this.groupBox7.Controls.Add(this.label11);
             this.groupBox7.Location = new System.Drawing.Point(800, 6);
             this.groupBox7.Name = "groupBox7";
-            this.groupBox7.Size = new System.Drawing.Size(263, 131);
+            this.groupBox7.Size = new System.Drawing.Size(263, 179);
             this.groupBox7.TabIndex = 16;
             this.groupBox7.TabStop = false;
             this.groupBox7.Text = "Добавление/Обновление";
             // 
+            // comboBox_propusk_status
+            // 
+            this.comboBox_propusk_status.FormattingEnabled = true;
+            this.comboBox_propusk_status.Location = new System.Drawing.Point(10, 84);
+            this.comboBox_propusk_status.Name = "comboBox_propusk_status";
+            this.comboBox_propusk_status.Size = new System.Drawing.Size(247, 21);
+            this.comboBox_propusk_status.TabIndex = 25;
+            // 
+            // label1
+            // 
+            this.label1.AutoSize = true;
+            this.label1.Location = new System.Drawing.Point(7, 68);
+            this.label1.Name = "label1";
+            this.label1.Size = new System.Drawing.Size(91, 13);
+            this.label1.TabIndex = 24;
+            this.label1.Text = "Статус пропуска";
+            // 
             // button27
             // 
-            this.button27.Location = new System.Drawing.Point(157, 93);
+            this.button27.Location = new System.Drawing.Point(157, 149);
             this.button27.Name = "button27";
             this.button27.Size = new System.Drawing.Size(100, 23);
             this.button27.TabIndex = 8;
@@ -703,7 +504,7 @@
             // 
             // button28
             // 
-            this.button28.Location = new System.Drawing.Point(157, 64);
+            this.button28.Location = new System.Drawing.Point(157, 120);
             this.button28.Name = "button28";
             this.button28.Size = new System.Drawing.Size(100, 23);
             this.button28.TabIndex = 7;
@@ -711,21 +512,21 @@
             this.button28.UseVisualStyleBackColor = true;
             this.button28.Click += new System.EventHandler(this.button28_Click);
             // 
-            // textBox_tip_attack_name
+            // textBox_propusk_num
             // 
-            this.textBox_tip_attack_name.Location = new System.Drawing.Point(10, 38);
-            this.textBox_tip_attack_name.Name = "textBox_tip_attack_name";
-            this.textBox_tip_attack_name.Size = new System.Drawing.Size(247, 20);
-            this.textBox_tip_attack_name.TabIndex = 2;
+            this.textBox_propusk_num.Location = new System.Drawing.Point(10, 38);
+            this.textBox_propusk_num.Name = "textBox_propusk_num";
+            this.textBox_propusk_num.Size = new System.Drawing.Size(247, 20);
+            this.textBox_propusk_num.TabIndex = 2;
             // 
             // label11
             // 
             this.label11.AutoSize = true;
             this.label11.Location = new System.Drawing.Point(7, 22);
             this.label11.Name = "label11";
-            this.label11.Size = new System.Drawing.Size(58, 13);
+            this.label11.Size = new System.Drawing.Size(91, 13);
             this.label11.TabIndex = 1;
-            this.label11.Text = "Тип атаки";
+            this.label11.Text = "Номер пропуска";
             // 
             // dataGridView8
             // 
@@ -751,13 +552,13 @@
             this.tabPage10.Padding = new System.Windows.Forms.Padding(3);
             this.tabPage10.Size = new System.Drawing.Size(1069, 594);
             this.tabPage10.TabIndex = 2;
-            this.tabPage10.Text = "Протоколы";
+            this.tabPage10.Text = "Статус пропуска";
             this.tabPage10.UseVisualStyleBackColor = true;
             // 
             // button10
             // 
             this.button10.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
-            this.button10.Location = new System.Drawing.Point(951, 146);
+            this.button10.Location = new System.Drawing.Point(957, 146);
             this.button10.Name = "button10";
             this.button10.Size = new System.Drawing.Size(100, 23);
             this.button10.TabIndex = 16;
@@ -768,7 +569,7 @@
             // groupBox4
             // 
             this.groupBox4.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
-            this.groupBox4.Controls.Add(this.textBox_protocol_name);
+            this.groupBox4.Controls.Add(this.textBox_status_propusk_name);
             this.groupBox4.Controls.Add(this.label19);
             this.groupBox4.Controls.Add(this.button11);
             this.groupBox4.Controls.Add(this.button12);
@@ -779,25 +580,25 @@
             this.groupBox4.TabStop = false;
             this.groupBox4.Text = "Добавление/Обновление";
             // 
-            // textBox_protocol_name
+            // textBox_status_propusk_name
             // 
-            this.textBox_protocol_name.Location = new System.Drawing.Point(9, 41);
-            this.textBox_protocol_name.Name = "textBox_protocol_name";
-            this.textBox_protocol_name.Size = new System.Drawing.Size(242, 20);
-            this.textBox_protocol_name.TabIndex = 10;
+            this.textBox_status_propusk_name.Location = new System.Drawing.Point(9, 38);
+            this.textBox_status_propusk_name.Name = "textBox_status_propusk_name";
+            this.textBox_status_propusk_name.Size = new System.Drawing.Size(242, 20);
+            this.textBox_status_propusk_name.TabIndex = 10;
             // 
             // label19
             // 
             this.label19.AutoSize = true;
-            this.label19.Location = new System.Drawing.Point(6, 25);
+            this.label19.Location = new System.Drawing.Point(6, 22);
             this.label19.Name = "label19";
-            this.label19.Size = new System.Drawing.Size(56, 13);
+            this.label19.Size = new System.Drawing.Size(41, 13);
             this.label19.TabIndex = 9;
-            this.label19.Text = "Протокол";
+            this.label19.Text = "Статус";
             // 
             // button11
             // 
-            this.button11.Location = new System.Drawing.Point(151, 96);
+            this.button11.Location = new System.Drawing.Point(157, 93);
             this.button11.Name = "button11";
             this.button11.Size = new System.Drawing.Size(100, 23);
             this.button11.TabIndex = 8;
@@ -807,7 +608,7 @@
             // 
             // button12
             // 
-            this.button12.Location = new System.Drawing.Point(151, 67);
+            this.button12.Location = new System.Drawing.Point(157, 64);
             this.button12.Name = "button12";
             this.button12.Size = new System.Drawing.Size(100, 23);
             this.button12.TabIndex = 7;
@@ -828,94 +629,6 @@
             this.dataGridView4.ReadOnly = true;
             this.dataGridView4.Size = new System.Drawing.Size(788, 582);
             this.dataGridView4.TabIndex = 14;
-            // 
-            // tabPage4
-            // 
-            this.tabPage4.Controls.Add(this.button1);
-            this.tabPage4.Controls.Add(this.groupBox6);
-            this.tabPage4.Controls.Add(this.dataGridView1);
-            this.tabPage4.Location = new System.Drawing.Point(4, 29);
-            this.tabPage4.Name = "tabPage4";
-            this.tabPage4.Padding = new System.Windows.Forms.Padding(3);
-            this.tabPage4.Size = new System.Drawing.Size(1069, 594);
-            this.tabPage4.TabIndex = 4;
-            this.tabPage4.Text = "Сервисы";
-            this.tabPage4.UseVisualStyleBackColor = true;
-            // 
-            // button1
-            // 
-            this.button1.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
-            this.button1.Location = new System.Drawing.Point(951, 146);
-            this.button1.Name = "button1";
-            this.button1.Size = new System.Drawing.Size(100, 23);
-            this.button1.TabIndex = 18;
-            this.button1.Text = "Удалить";
-            this.button1.UseVisualStyleBackColor = true;
-            this.button1.Click += new System.EventHandler(this.button1_Click);
-            // 
-            // groupBox6
-            // 
-            this.groupBox6.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
-            this.groupBox6.Controls.Add(this.textBox_service_name);
-            this.groupBox6.Controls.Add(this.label1);
-            this.groupBox6.Controls.Add(this.button2);
-            this.groupBox6.Controls.Add(this.button3);
-            this.groupBox6.Location = new System.Drawing.Point(800, 6);
-            this.groupBox6.Name = "groupBox6";
-            this.groupBox6.Size = new System.Drawing.Size(263, 134);
-            this.groupBox6.TabIndex = 17;
-            this.groupBox6.TabStop = false;
-            this.groupBox6.Text = "Добавление/Обновление";
-            // 
-            // textBox_service_name
-            // 
-            this.textBox_service_name.Location = new System.Drawing.Point(9, 41);
-            this.textBox_service_name.Name = "textBox_service_name";
-            this.textBox_service_name.Size = new System.Drawing.Size(242, 20);
-            this.textBox_service_name.TabIndex = 10;
-            // 
-            // label1
-            // 
-            this.label1.AutoSize = true;
-            this.label1.Location = new System.Drawing.Point(6, 25);
-            this.label1.Name = "label1";
-            this.label1.Size = new System.Drawing.Size(44, 13);
-            this.label1.TabIndex = 9;
-            this.label1.Text = "Сервис";
-            // 
-            // button2
-            // 
-            this.button2.Location = new System.Drawing.Point(151, 96);
-            this.button2.Name = "button2";
-            this.button2.Size = new System.Drawing.Size(100, 23);
-            this.button2.TabIndex = 8;
-            this.button2.Text = "Обновить";
-            this.button2.UseVisualStyleBackColor = true;
-            this.button2.Click += new System.EventHandler(this.button2_Click);
-            // 
-            // button3
-            // 
-            this.button3.Location = new System.Drawing.Point(151, 67);
-            this.button3.Name = "button3";
-            this.button3.Size = new System.Drawing.Size(100, 23);
-            this.button3.TabIndex = 7;
-            this.button3.Text = "Добавить";
-            this.button3.UseVisualStyleBackColor = true;
-            this.button3.Click += new System.EventHandler(this.button3_Click);
-            // 
-            // dataGridView1
-            // 
-            this.dataGridView1.AllowUserToAddRows = false;
-            this.dataGridView1.AllowUserToDeleteRows = false;
-            this.dataGridView1.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
-            | System.Windows.Forms.AnchorStyles.Left) 
-            | System.Windows.Forms.AnchorStyles.Right)));
-            this.dataGridView1.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-            this.dataGridView1.Location = new System.Drawing.Point(6, 6);
-            this.dataGridView1.Name = "dataGridView1";
-            this.dataGridView1.ReadOnly = true;
-            this.dataGridView1.Size = new System.Drawing.Size(788, 582);
-            this.dataGridView1.TabIndex = 15;
             // 
             // tabPage_nastroi
             // 
@@ -1219,6 +932,23 @@
             this.label41.TabIndex = 9;
             this.label41.Text = "Пароль";
             // 
+            // comboBox1
+            // 
+            this.comboBox1.FormattingEnabled = true;
+            this.comboBox1.Location = new System.Drawing.Point(10, 88);
+            this.comboBox1.Name = "comboBox1";
+            this.comboBox1.Size = new System.Drawing.Size(247, 21);
+            this.comboBox1.TabIndex = 27;
+            // 
+            // label3
+            // 
+            this.label3.AutoSize = true;
+            this.label3.Location = new System.Drawing.Point(7, 72);
+            this.label3.Name = "label3";
+            this.label3.Size = new System.Drawing.Size(91, 13);
+            this.label3.TabIndex = 26;
+            this.label3.Text = "Номер пропуска";
+            // 
             // Form1
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -1229,21 +959,15 @@
             this.Controls.Add(this.button18);
             this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.Fixed3D;
             this.Name = "Form1";
-            this.Text = "Фильтрация сигнатур IDS Snort";
+            this.Text = "ИС проходной";
             this.FormClosed += new System.Windows.Forms.FormClosedEventHandler(this.Form1_FormClosed);
             this.Load += new System.EventHandler(this.Form1_Load);
             this.panel1.ResumeLayout(false);
             this.tabControl2.ResumeLayout(false);
             this.tabPage_priem_otpusk.ResumeLayout(false);
-            this.tabControl1.ResumeLayout(false);
-            this.tabPage3.ResumeLayout(false);
             this.groupBox3.ResumeLayout(false);
             this.groupBox3.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)(this.dataGridView3)).EndInit();
-            this.tabPage5.ResumeLayout(false);
-            this.groupBox8.ResumeLayout(false);
-            this.groupBox8.PerformLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.dataGridView5)).EndInit();
             this.tabPage_sprav.ResumeLayout(false);
             this.tabControl3.ResumeLayout(false);
             this.tabPage9.ResumeLayout(false);
@@ -1258,10 +982,6 @@
             this.groupBox4.ResumeLayout(false);
             this.groupBox4.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)(this.dataGridView4)).EndInit();
-            this.tabPage4.ResumeLayout(false);
-            this.groupBox6.ResumeLayout(false);
-            this.groupBox6.PerformLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.dataGridView1)).EndInit();
             this.tabPage_nastroi.ResumeLayout(false);
             this.groupBox10.ResumeLayout(false);
             ((System.ComponentModel.ISupportInitialize)(this.dataGridView_polzov)).EndInit();
@@ -1282,17 +1002,6 @@
         private System.Windows.Forms.Panel panel1;
         private System.Windows.Forms.TabControl tabControl2;
         private System.Windows.Forms.TabPage tabPage_priem_otpusk;
-        private System.Windows.Forms.TabControl tabControl1;
-        private System.Windows.Forms.TabPage tabPage3;
-        private System.Windows.Forms.Button button7;
-        private System.Windows.Forms.GroupBox groupBox3;
-        private System.Windows.Forms.Button button9;
-        private System.Windows.Forms.ComboBox comboBox_signature_service;
-        private System.Windows.Forms.Label label20;
-        private System.Windows.Forms.Label label8;
-        private System.Windows.Forms.Label label9;
-        private System.Windows.Forms.DataGridView dataGridView3;
-        private System.Windows.Forms.TabPage tabPage5;
         private System.Windows.Forms.TabPage tabPage_sprav;
         private System.Windows.Forms.TabControl tabControl3;
         private System.Windows.Forms.TabPage tabPage9;
@@ -1333,48 +1042,38 @@
         private System.Windows.Forms.TextBox textBox_smena_fio;
         private System.Windows.Forms.Label label17;
         private System.Windows.Forms.Button button25;
-        private System.Windows.Forms.TextBox textBox_protocol_name;
+        private System.Windows.Forms.TextBox textBox_status_propusk_name;
         private System.Windows.Forms.Label label19;
         private System.Windows.Forms.TabPage tabPage2;
         private System.Windows.Forms.Button button26;
         private System.Windows.Forms.GroupBox groupBox7;
         private System.Windows.Forms.Button button27;
         private System.Windows.Forms.Button button28;
-        private System.Windows.Forms.TextBox textBox_tip_attack_name;
+        private System.Windows.Forms.TextBox textBox_propusk_num;
         private System.Windows.Forms.Label label11;
         private System.Windows.Forms.DataGridView dataGridView8;
-        private System.Windows.Forms.Label label22;
-        private System.Windows.Forms.Label label21;
-        private System.Windows.Forms.ComboBox comboBox_signature_os;
-        private System.Windows.Forms.ComboBox comboBox_signature_tip_attack;
         private System.Windows.Forms.Button button4;
         private System.Windows.Forms.GroupBox groupBox2;
         private System.Windows.Forms.Button button5;
         private System.Windows.Forms.Button button6;
-        private System.Windows.Forms.TextBox textBox_os_name;
+        private System.Windows.Forms.TextBox textBox_sotrudnik_name;
         private System.Windows.Forms.Label label2;
-        private System.Windows.Forms.TabPage tabPage4;
-        private System.Windows.Forms.Button button1;
-        private System.Windows.Forms.GroupBox groupBox6;
-        private System.Windows.Forms.TextBox textBox_service_name;
+        private System.Windows.Forms.ComboBox comboBox_propusk_status;
         private System.Windows.Forms.Label label1;
-        private System.Windows.Forms.Button button2;
-        private System.Windows.Forms.Button button3;
-        private System.Windows.Forms.DataGridView dataGridView1;
+        private System.Windows.Forms.Button button7;
+        private System.Windows.Forms.GroupBox groupBox3;
         private System.Windows.Forms.ComboBox comboBox_signature_protocol;
-        private System.Windows.Forms.DataGridView dataGridView5;
-        private System.Windows.Forms.GroupBox groupBox8;
-        private System.Windows.Forms.CheckBox checkBox_os;
-        private System.Windows.Forms.ComboBox comboBox_signature_service_f;
-        private System.Windows.Forms.CheckBox checkBox_service;
+        private System.Windows.Forms.ComboBox comboBox_signature_tip_attack;
+        private System.Windows.Forms.ComboBox comboBox_signature_os;
+        private System.Windows.Forms.Label label22;
+        private System.Windows.Forms.Label label21;
+        private System.Windows.Forms.Button button9;
+        private System.Windows.Forms.ComboBox comboBox_signature_service;
+        private System.Windows.Forms.Label label20;
+        private System.Windows.Forms.Label label8;
+        private System.Windows.Forms.Label label9;
+        private System.Windows.Forms.DataGridView dataGridView3;
+        private System.Windows.Forms.ComboBox comboBox1;
         private System.Windows.Forms.Label label3;
-        private System.Windows.Forms.CheckBox checkBox_protocol;
-        private System.Windows.Forms.CheckBox checkBox_tip_attack;
-        private System.Windows.Forms.ComboBox comboBox_signature_os_f;
-        private System.Windows.Forms.Label label5;
-        private System.Windows.Forms.ComboBox comboBox_signature_tip_attack_f;
-        private System.Windows.Forms.Label label4;
-        private System.Windows.Forms.ComboBox comboBox_signature_protocol_f;
-        private System.Windows.Forms.Label label6;
     }
 }

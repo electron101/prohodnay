@@ -89,7 +89,7 @@ namespace prohodnay
 
             SqlConnectionStringBuilder bdr = new SqlConnectionStringBuilder();
             bdr.DataSource = @".\SQLExpress";
-            bdr.InitialCatalog = "bank_karta";
+            bdr.InitialCatalog = "prohodnay";
             bdr.IntegratedSecurity = true;
 
             Form1.cn = new SqlConnection(bdr.ConnectionString);

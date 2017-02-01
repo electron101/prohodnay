@@ -23,8 +23,9 @@ namespace prohodnay
         static public string strSQL;
 
         BindingSource bs_polzov = new BindingSource();
-        BindingSource bs_os = new BindingSource();
-        BindingSource bs_protocol = new BindingSource();
+        BindingSource bs_vid_status = new BindingSource();
+        BindingSource bs_sotrudnik = new BindingSource();
+        BindingSource bs_propusk = new BindingSource();
         BindingSource bs_service = new BindingSource();
         BindingSource bs_tip_attack = new BindingSource();
         BindingSource bs_signature = new BindingSource();
@@ -102,147 +103,160 @@ namespace prohodnay
             dataGridView_polzov.DataSource = bs_polzov;
         }
 
-        void load_protocol()
+        void load_vid_status()
         {
-            ds.Tables["PROTOCOL"].Clear();
-            strSQL = " SELECT id_protocol AS '№_Протокола', name AS 'Протокол' FROM protocol ";
+            ds.Tables["VID_STATUS"].Clear();
+            strSQL = " SELECT id_status AS 'id_Статуса', name AS 'Вид_статуса' FROM vid_status ";
             SQLAdapter = new SqlDataAdapter(strSQL, cn);
 
-            SQLAdapter.Fill(ds, "PROTOCOL");
+            SQLAdapter.Fill(ds, "VID_STATUS");
 
-            bs_protocol.DataSource = ds.Tables["PROTOCOL"];
-            dataGridView4.DataSource = bs_protocol;
+            bs_vid_status.DataSource = ds.Tables["VID_STATUS"];
+            dataGridView4.DataSource = bs_vid_status;
         }
 
-        void load_os()                   // функция для отображения информации
-        {
-            ds.Tables["OS"].Clear();
-            strSQL = " SELECT id_os AS '№_Операционной_системы', name AS 'Операционная_система' FROM os";
-            SQLAdapter = new SqlDataAdapter(strSQL, cn);
+        //void load_propusk()
+        //{
+        //    ds.Tables["PROPUSK"].Clear();
+        //    strSQL = " SELECT propusk.id_propusk AS 'id_Пропуска', propusk.num_propusk AS '№_Пропуска', " + 
+        //             " vid_status.name FROM propusk JOIN vid_status ON propusk.id_status = vid_status.id_status ";
+        //    SQLAdapter = new SqlDataAdapter(strSQL, cn);
 
-            SQLAdapter.Fill(ds, "OS");
+        //    SQLAdapter.Fill(ds, "PROPUSK");
 
-            bs_os.DataSource = ds.Tables["OS"];
-            dataGridView2.DataSource = bs_os;
-        }
+        //    bs_propusk.DataSource = ds.Tables["PROPUSK"];
+        //    dataGridView4.DataSource = bs_propusk;
+        //}
 
-        void load_signature()                   // функция для отображения информации
-        {
-            ds.Tables["SIGNATURE"].Clear();
-            strSQL = " SELECT signature.id_signature AS '№_Сигнатуры', tip_attack.name AS 'Тип_атаки', " +
-                     " protocol.name AS 'Протокол', service.name AS 'Сервис', os.name AS 'Операционная_система' " +
-                     " FROM signature JOIN tip_attack ON signature.id_tip_attack = tip_attack.id_tip_attack JOIN protocol ON " + 
-                     " signature.id_protocol = protocol.id_protocol JOIN service ON signature.id_service " + 
-                     " = service.id_service JOIN os ON signature.id_os = os.id_os ";
+        //void load_sotrudnik()                   // функция для отображения информации
+        //{
+        //    ds.Tables["SOTRUDNIK"].Clear();
+        //    strSQL = " SELECT id_os AS '№_Операционной_системы', name AS 'Операционная_система' FROM os";
+        //    SQLAdapter = new SqlDataAdapter(strSQL, cn);
 
-            SQLAdapter = new SqlDataAdapter(strSQL, cn);
+        //    SQLAdapter.Fill(ds, "OS");
+
+        //    bs_sotrudnik.DataSource = ds.Tables["OS"];
+        //    dataGridView2.DataSource = bs_sotrudnik;
+        //}
+
+        //void load_signature()                   // функция для отображения информации
+        //{
+        //    ds.Tables["SIGNATURE"].Clear();
+        //    strSQL = " SELECT signature.id_signature AS '№_Сигнатуры', tip_attack.name AS 'Тип_атаки', " +
+        //             " protocol.name AS 'Протокол', service.name AS 'Сервис', os.name AS 'Операционная_система' " +
+        //             " FROM signature JOIN tip_attack ON signature.id_tip_attack = tip_attack.id_tip_attack JOIN protocol ON " + 
+        //             " signature.id_protocol = protocol.id_protocol JOIN service ON signature.id_service " + 
+        //             " = service.id_service JOIN os ON signature.id_os = os.id_os ";
+
+        //    SQLAdapter = new SqlDataAdapter(strSQL, cn);
             
-            SQLAdapter.Fill(ds, "SIGNATURE");
+        //    SQLAdapter.Fill(ds, "SIGNATURE");
 
-            bs_signature.DataSource = ds.Tables["SIGNATURE"];
-            dataGridView3.DataSource = bs_signature;
-            dataGridView5.DataSource = bs_signature;
-        }
+        //    bs_signature.DataSource = ds.Tables["SIGNATURE"];
+        //    dataGridView3.DataSource = bs_signature;
+        //    dataGridView5.DataSource = bs_signature;
+        //}
 
-        void load_tip_attack()                   // функция для отображения информации
-        {
-            ds.Tables["TIP_ATTACK"].Clear();
-            strSQL = " SELECT id_tip_attack AS '№_Типа_атаки', name AS 'Тип_атаки' FROM tip_attack";
-            SQLAdapter = new SqlDataAdapter(strSQL, cn);
+        //void load_tip_attack()                   // функция для отображения информации
+        //{
+        //    ds.Tables["TIP_ATTACK"].Clear();
+        //    strSQL = " SELECT id_tip_attack AS '№_Типа_атаки', name AS 'Тип_атаки' FROM tip_attack";
+        //    SQLAdapter = new SqlDataAdapter(strSQL, cn);
 
-            SQLAdapter.Fill(ds, "TIP_ATTACK");
+        //    SQLAdapter.Fill(ds, "TIP_ATTACK");
 
-            bs_tip_attack.DataSource = ds.Tables["TIP_ATTACK"];
-            dataGridView8.DataSource = bs_tip_attack;
-        }
+        //    bs_tip_attack.DataSource = ds.Tables["TIP_ATTACK"];
+        //    dataGridView8.DataSource = bs_tip_attack;
+        //}
         
-        void load_service()                   // функция для отображения информации
-        {
-            ds.Tables["SERVICE"].Clear();
-            strSQL = " SELECT id_service AS '№_Сервиса', name AS 'Сервис' FROM service";
-            SQLAdapter = new SqlDataAdapter(strSQL, cn);
+        //void load_service()                   // функция для отображения информации
+        //{
+        //    ds.Tables["SERVICE"].Clear();
+        //    strSQL = " SELECT id_service AS '№_Сервиса', name AS 'Сервис' FROM service";
+        //    SQLAdapter = new SqlDataAdapter(strSQL, cn);
 
-            SQLAdapter.Fill(ds, "SERVICE");
+        //    SQLAdapter.Fill(ds, "SERVICE");
 
-            bs_service.DataSource = ds.Tables["SERVICE"];
-            dataGridView1.DataSource = bs_service;
-        }
+        //    bs_service.DataSource = ds.Tables["SERVICE"];
+        //    dataGridView1.DataSource = bs_service;
+        //}
 
-        void filter()             // фильтрация сигнатур по всем параметрам
-        {
-            //&& ds.Tables["SIGNATURE"].Rows.Count > 0
-            if (ds.Tables["SIGNATURE"] != null)
-            {
-                BindingSource bs = new BindingSource();
-                bs.DataSource = bs_signature;
-                bs.Filter = 
-                string.Format(" CONVERT(" + ds.Tables["SIGNATURE"].Columns[1].ToString() + ", 'System.String') LIKE '{0}%' AND " +
-                              " CONVERT(" + ds.Tables["SIGNATURE"].Columns[2].ToString() + ", 'System.String') LIKE '{1}%' AND " +
-                              " CONVERT(" + ds.Tables["SIGNATURE"].Columns[3].ToString() + ", 'System.String') LIKE '{2}%' AND " +
-                              " CONVERT(" + ds.Tables["SIGNATURE"].Columns[4].ToString() + ", 'System.String') LIKE '{3}%'"
-                              , comboBox_signature_tip_attack_f.Text, comboBox_signature_protocol_f.Text
-                              , comboBox_signature_service_f.Text, comboBox_signature_os_f.Text);
-            }
-        }
+        //void filter()             // фильтрация сигнатур по всем параметрам
+        //{
+        //    //&& ds.Tables["SIGNATURE"].Rows.Count > 0
+        //    if (ds.Tables["SIGNATURE"] != null)
+        //    {
+        //        BindingSource bs = new BindingSource();
+        //        bs.DataSource = bs_signature;
+        //        bs.Filter = 
+        //        string.Format(" CONVERT(" + ds.Tables["SIGNATURE"].Columns[1].ToString() + ", 'System.String') LIKE '{0}%' AND " +
+        //                      " CONVERT(" + ds.Tables["SIGNATURE"].Columns[2].ToString() + ", 'System.String') LIKE '{1}%' AND " +
+        //                      " CONVERT(" + ds.Tables["SIGNATURE"].Columns[3].ToString() + ", 'System.String') LIKE '{2}%' AND " +
+        //                      " CONVERT(" + ds.Tables["SIGNATURE"].Columns[4].ToString() + ", 'System.String') LIKE '{3}%'"
+        //                      , comboBox_signature_tip_attack_f.Text, comboBox_signature_protocol_f.Text
+        //                      , comboBox_signature_service_f.Text, comboBox_signature_os_f.Text);
+        //    }
+        //}
 
-        void spravochnik_reload()
-        {
-            comboBox_signature_tip_attack.DataSource = bs_tip_attack;
-            comboBox_signature_tip_attack.DisplayMember = "Тип_атаки";
-            comboBox_signature_tip_attack.ValueMember = "№_Типа_атаки";
+        //void spravochnik_reload()
+        //{
+        //    comboBox_signature_tip_attack.DataSource = bs_tip_attack;
+        //    comboBox_signature_tip_attack.DisplayMember = "Тип_атаки";
+        //    comboBox_signature_tip_attack.ValueMember = "№_Типа_атаки";
 
-            comboBox_signature_protocol.DataSource = bs_protocol;
-            comboBox_signature_protocol.DisplayMember = "Протокол";
-            comboBox_signature_protocol.ValueMember = "№_Протокола";
+        //    comboBox_signature_protocol.DataSource = bs_protocol;
+        //    comboBox_signature_protocol.DisplayMember = "Протокол";
+        //    comboBox_signature_protocol.ValueMember = "№_Протокола";
 
-            comboBox_signature_service.DataSource = bs_service;
-            comboBox_signature_service.DisplayMember = "Сервис";
-            comboBox_signature_service.ValueMember = "№_Сервиса";
+        //    comboBox_signature_service.DataSource = bs_service;
+        //    comboBox_signature_service.DisplayMember = "Сервис";
+        //    comboBox_signature_service.ValueMember = "№_Сервиса";
 
-            comboBox_signature_os.DataSource = bs_os;
-            comboBox_signature_os.DisplayMember = "Операционная_система";
-            comboBox_signature_os.ValueMember = "№_Операционной_системы";
-        }
+        //    comboBox_signature_os.DataSource = bs_sotrudnik;
+        //    comboBox_signature_os.DisplayMember = "Операционная_система";
+        //    comboBox_signature_os.ValueMember = "№_Операционной_системы";
+        //}
 
-        void spravochnik_reload_f()
-        {
-            comboBox_signature_tip_attack_f.DataSource = bs_tip_attack;
-            comboBox_signature_tip_attack_f.DisplayMember = "Тип_атаки";
-            comboBox_signature_tip_attack_f.ValueMember = "№_Типа_атаки";
+        //void spravochnik_reload_f()
+        //{
+        //    comboBox_signature_tip_attack_f.DataSource = bs_tip_attack;
+        //    comboBox_signature_tip_attack_f.DisplayMember = "Тип_атаки";
+        //    comboBox_signature_tip_attack_f.ValueMember = "№_Типа_атаки";
 
-            comboBox_signature_protocol_f.DataSource = bs_protocol;
-            comboBox_signature_protocol_f.DisplayMember = "Протокол";
-            comboBox_signature_protocol_f.ValueMember = "№_Протокола";
+        //    comboBox_signature_protocol_f.DataSource = bs_protocol;
+        //    comboBox_signature_protocol_f.DisplayMember = "Протокол";
+        //    comboBox_signature_protocol_f.ValueMember = "№_Протокола";
 
-            comboBox_signature_service_f.DataSource = bs_service;
-            comboBox_signature_service_f.DisplayMember = "Сервис";
-            comboBox_signature_service_f.ValueMember = "№_Сервиса";
+        //    comboBox_signature_service_f.DataSource = bs_service;
+        //    comboBox_signature_service_f.DisplayMember = "Сервис";
+        //    comboBox_signature_service_f.ValueMember = "№_Сервиса";
 
-            comboBox_signature_os_f.DataSource = bs_os;
-            comboBox_signature_os_f.DisplayMember = "Операционная_система";
-            comboBox_signature_os_f.ValueMember = "№_Операционной_системы";
-        }
+        //    comboBox_signature_os_f.DataSource = bs_sotrudnik;
+        //    comboBox_signature_os_f.DisplayMember = "Операционная_система";
+        //    comboBox_signature_os_f.ValueMember = "№_Операционной_системы";
+        //}
         
-        void controls_start()             // вкладка выдачи выставляем полям нужные свойства
-        {
-            comboBox_signature_tip_attack_f.Text = "";
-            comboBox_signature_protocol_f.Text = "";
-            comboBox_signature_service_f.Text = "";
-            comboBox_signature_os_f.Text = "";
+        //void controls_start()             // вкладка выдачи выставляем полям нужные свойства
+        //{
+        //    comboBox_signature_tip_attack_f.Text = "";
+        //    comboBox_signature_protocol_f.Text = "";
+        //    comboBox_signature_service_f.Text = "";
+        //    comboBox_signature_os_f.Text = "";
 
-            //comboBox_signature_tip_attack_f.Enabled = false;
-            //comboBox_signature_protocol_f.Enabled = false;
-            //comboBox_signature_service_f.Enabled = false;
-            //comboBox_signature_os_f.Enabled = false;
-        }
+        //    //comboBox_signature_tip_attack_f.Enabled = false;
+        //    //comboBox_signature_protocol_f.Enabled = false;
+        //    //comboBox_signature_service_f.Enabled = false;
+        //    //comboBox_signature_os_f.Enabled = false;
+        //}
 
-        void check_v()                // вкладка выдачи выставляем чекбоксам нужные свойства
-        {
-            checkBox_tip_attack.Checked = true;
-            checkBox_protocol.Checked = true;
-            checkBox_service.Checked = true;
-            checkBox_os.Checked = true;
-        }
+        //void check_v()                // вкладка выдачи выставляем чекбоксам нужные свойства
+        //{
+        //    checkBox_tip_attack.Checked = true;
+        //    checkBox_protocol.Checked = true;
+        //    checkBox_service.Checked = true;
+        //    checkBox_os.Checked = true;
+        //}
 
         private void Form1_Load(object sender, EventArgs e)
         {
@@ -267,7 +281,7 @@ namespace prohodnay
             //
             //радио кнопка нажата 
             //radioButton3.Checked = true;
-            check_v();
+            //check_v();
             //
             // -------------------------------------------------------------------------------------
 
@@ -286,57 +300,57 @@ namespace prohodnay
 
             //
             // --- [ ЗАГРУЗКА ] ---   ПРОТОКОЛ -----------------------------------------------------
-            ds.Tables.Add("PROTOCOL");
-            load_protocol();
+            ds.Tables.Add("VID_STATUS");
+            load_vid_status();
             dataGridView4.SelectionMode = DataGridViewSelectionMode.FullRowSelect;
             dataGridView4.AutoSizeColumnsMode = DataGridViewAutoSizeColumnsMode.Fill;
-            textBox_protocol_name.DataBindings.Add(new Binding("Text", bs_protocol, "Протокол", false, DataSourceUpdateMode.Never));
+            textBox_status_propusk_name.DataBindings.Add(new Binding("Text", bs_vid_status, "Вид_статуса", false, DataSourceUpdateMode.Never));
             // ------------------------------------------------------------------------------------- 
           
             //
-            // --- [ ЗАГРУЗКА ] ---   ОПЕРАЦИОННАЯ СИСТЕМА -----------------------------------------
-            ds.Tables.Add("OS");
-            load_os();
-            dataGridView2.SelectionMode = DataGridViewSelectionMode.FullRowSelect;
-            dataGridView2.AutoSizeColumnsMode = DataGridViewAutoSizeColumnsMode.Fill;
-            textBox_os_name.DataBindings.Add(new Binding("Text", bs_os, "Операционная_система", false, DataSourceUpdateMode.Never));
+            // --- [ ЗАГРУЗКА ] ---   СОТРУДНИК ----------------------------------------------------
+            //ds.Tables.Add("OS");
+            //load_sotrudnik();
+            //dataGridView2.SelectionMode = DataGridViewSelectionMode.FullRowSelect;
+            //dataGridView2.AutoSizeColumnsMode = DataGridViewAutoSizeColumnsMode.Fill;
+            //textBox_sotrudnik_name.DataBindings.Add(new Binding("Text", bs_sotrudnik, "Операционная_система", false, DataSourceUpdateMode.Never));
             // --------------------------------------------------------------------------------------
             
             //
             // --- [ ЗАГРУЗКА ] ---   СИГНАТУРА -----------------------------------------------------
-            ds.Tables.Add("SIGNATURE");
-            load_signature();
-            dataGridView3.SelectionMode = DataGridViewSelectionMode.FullRowSelect;
-            dataGridView3.AutoSizeColumnsMode = DataGridViewAutoSizeColumnsMode.Fill;
-            comboBox_signature_tip_attack.DataBindings.Add(new Binding("Text", bs_signature, "Тип_атаки", false, DataSourceUpdateMode.Never));
-            comboBox_signature_protocol.DataBindings.Add(new Binding("Text", bs_signature, "Протокол", false, DataSourceUpdateMode.Never));
-            comboBox_signature_service.DataBindings.Add(new Binding("Text", bs_signature, "Сервис", false, DataSourceUpdateMode.Never));
-            comboBox_signature_os.DataBindings.Add(new Binding("Text", bs_signature, "Операционная_система", false, DataSourceUpdateMode.Never));
-            // --------------------------------------------------------------------------------------
+            //ds.Tables.Add("SIGNATURE");
+            //load_signature();
+            //dataGridView3.SelectionMode = DataGridViewSelectionMode.FullRowSelect;
+            //dataGridView3.AutoSizeColumnsMode = DataGridViewAutoSizeColumnsMode.Fill;
+            //comboBox_signature_tip_attack.DataBindings.Add(new Binding("Text", bs_signature, "Тип_атаки", false, DataSourceUpdateMode.Never));
+            //comboBox_signature_protocol.DataBindings.Add(new Binding("Text", bs_signature, "Протокол", false, DataSourceUpdateMode.Never));
+            //comboBox_signature_service.DataBindings.Add(new Binding("Text", bs_signature, "Сервис", false, DataSourceUpdateMode.Never));
+            //comboBox_signature_os.DataBindings.Add(new Binding("Text", bs_signature, "Операционная_система", false, DataSourceUpdateMode.Never));
+            //// --------------------------------------------------------------------------------------
 
-            //
-            // --- [ ЗАГРУЗКА ] ---   ФИЛЬТРАЦИЯ ----------------------------------------------------
-            dataGridView5.SelectionMode = DataGridViewSelectionMode.FullRowSelect;
-            dataGridView5.AutoSizeColumnsMode = DataGridViewAutoSizeColumnsMode.Fill;
-            // --------------------------------------------------------------------------------------
+            ////
+            //// --- [ ЗАГРУЗКА ] ---   ФИЛЬТРАЦИЯ ----------------------------------------------------
+            //dataGridView5.SelectionMode = DataGridViewSelectionMode.FullRowSelect;
+            //dataGridView5.AutoSizeColumnsMode = DataGridViewAutoSizeColumnsMode.Fill;
+            //// --------------------------------------------------------------------------------------
 
-            //
-            // --- [ ЗАГРУЗКА ] ---   ТИП АТАКИ -----------------------------------------------------
-            ds.Tables.Add("TIP_ATTACK");
-            load_tip_attack();
-            dataGridView8.SelectionMode = DataGridViewSelectionMode.FullRowSelect;
-            dataGridView8.AutoSizeColumnsMode = DataGridViewAutoSizeColumnsMode.Fill;
-            textBox_tip_attack_name.DataBindings.Add(new Binding("Text", bs_tip_attack, "Тип_атаки", false, DataSourceUpdateMode.Never));
-            // --------------------------------------------------------------------------------------
+            ////
+            //// --- [ ЗАГРУЗКА ] ---   ТИП АТАКИ -----------------------------------------------------
+            //ds.Tables.Add("TIP_ATTACK");
+            //load_tip_attack();
+            //dataGridView8.SelectionMode = DataGridViewSelectionMode.FullRowSelect;
+            //dataGridView8.AutoSizeColumnsMode = DataGridViewAutoSizeColumnsMode.Fill;
+            //textBox_propusk_num.DataBindings.Add(new Binding("Text", bs_tip_attack, "Тип_атаки", false, DataSourceUpdateMode.Never));
+            //// --------------------------------------------------------------------------------------
             
-            //
-            // --- [ ЗАГРУЗКА ] ---   СЕРВИС --------------------------------------------------------
-            ds.Tables.Add("SERVICE");
-            load_service();
-            dataGridView1.SelectionMode = DataGridViewSelectionMode.FullRowSelect;
-            dataGridView1.AutoSizeColumnsMode = DataGridViewAutoSizeColumnsMode.Fill;
-            textBox_service_name.DataBindings.Add(new Binding("Text", bs_service, "Сервис", false, DataSourceUpdateMode.Never));
-            // --------------------------------------------------------------------------------------
+            ////
+            //// --- [ ЗАГРУЗКА ] ---   СЕРВИС --------------------------------------------------------
+            //ds.Tables.Add("SERVICE");
+            //load_service();
+            //dataGridView1.SelectionMode = DataGridViewSelectionMode.FullRowSelect;
+            //dataGridView1.AutoSizeColumnsMode = DataGridViewAutoSizeColumnsMode.Fill;
+            //textBox_service_name.DataBindings.Add(new Binding("Text", bs_service, "Сервис", false, DataSourceUpdateMode.Never));
+            //// --------------------------------------------------------------------------------------
         }
 
         private void button15_Click(object sender, EventArgs e)
@@ -579,26 +593,26 @@ namespace prohodnay
 
         private void button12_Click(object sender, EventArgs e)
         {
-            // --- [ ДОБАВЛЕНИЕ ] ---  ПРОТОКОЛ
+            // --- [ ДОБАВЛЕНИЕ ] ---  ВИД СТАТУСА
 
             // проверим все поля на заполненность
-            if (textBox_protocol_name.Text == "")
+            if (textBox_status_propusk_name.Text == "")
             {
                 MessageBox.Show("Заполните все поля", "Добавление", MessageBoxButtons.OK, MessageBoxIcon.Warning);
                 return;
             }
             // запрос на добавление
-            strSQL = "INSERT INTO protocol VALUES (@NAME)";
+            strSQL = "INSERT INTO vid_status VALUES (@NAME)";
 
             // работаем через адаптер и свойство добавления
             SQLAdapter.InsertCommand = new SqlCommand(strSQL, cn);  // новая команда создана
             // определим параметры и зададим им значения
-            SQLAdapter.InsertCommand.Parameters.Add("@NAME", SqlDbType.VarChar).Value = textBox_protocol_name.Text;
+            SQLAdapter.InsertCommand.Parameters.Add("@NAME", SqlDbType.VarChar).Value = textBox_status_propusk_name.Text;
             try
             {
                 SQLAdapter.InsertCommand.ExecuteNonQuery(); // выполним запрос
                 // если удачно то...
-                load_protocol();           // обновим таблицу
+                load_vid_status();           // обновим таблицу
                 MessageBox.Show("Успешно добавлен!", "Добавление", MessageBoxButtons.OK, MessageBoxIcon.Information);
             }
             catch (Exception ex)
@@ -610,30 +624,30 @@ namespace prohodnay
 
         private void button11_Click(object sender, EventArgs e)
         {
-            // --- [ ОБНОВЛЕНИЕ ] ---   ПРОТОКОЛ
+            // --- [ ОБНОВЛЕНИЕ ] ---   ВИД СТАТУСА
 
-            if (ds.Tables["PROTOCOL"].Rows.Count > 0)              // проверка на наличие строк в таблице
+            if (ds.Tables["VID_STATUS"].Rows.Count > 0)              // проверка на наличие строк в таблице
             {
                 // проверим все поля на заполненность
-                if (textBox_protocol_name.Text == "")
+                if (textBox_status_propusk_name.Text == "")
                 {
                     MessageBox.Show("Заполните все поля", "Обновление", MessageBoxButtons.OK, MessageBoxIcon.Warning);
                     return;
                 }
 
                 // запрос на обновление
-                strSQL = " UPDATE protocol SET name = @NAME WHERE id_protocol = @ID_P ";
+                strSQL = " UPDATE vid_status SET name = @NAME WHERE id_status = @ID_S ";
 
                 SQLAdapter.UpdateCommand = new SqlCommand(strSQL, cn);  // команда для обноления создана
                 // зададим значения параметрам 
-                SQLAdapter.UpdateCommand.Parameters.Add("@NAME", SqlDbType.VarChar).Value = textBox_protocol_name.Text;
-                SQLAdapter.UpdateCommand.Parameters.Add("@ID_P", SqlDbType.Int).Value =
-                    Convert.ToInt32(ds.Tables["PROTOCOL"].Rows[dataGridView4.CurrentRow.Index][0]);
+                SQLAdapter.UpdateCommand.Parameters.Add("@NAME", SqlDbType.VarChar).Value = textBox_status_propusk_name.Text;
+                SQLAdapter.UpdateCommand.Parameters.Add("@ID_S", SqlDbType.Int).Value =
+                    Convert.ToInt32(ds.Tables["VID_STATUS"].Rows[dataGridView4.CurrentRow.Index][0]);
                 try
                 {
                     SQLAdapter.UpdateCommand.ExecuteNonQuery(); // выполним запрос
                     // если удачно то...
-                    load_protocol();           // обновим таблицу
+                    load_vid_status();           // обновим таблицу
                     MessageBox.Show("Запись успешно обновлена!", "Обновление", MessageBoxButtons.OK, MessageBoxIcon.Information);
                 }
                 catch (Exception ex)
@@ -650,9 +664,9 @@ namespace prohodnay
         {
             // --- [ УДАЛЕНИЕ ВЫБРАННЫХ ] ---   ПРОТОКОЛ
 
-            if (ds.Tables["PROTOCOL"].Rows.Count > 0)              // проверка на наличие строк в таблице
+            if (ds.Tables["VID_STATUS"].Rows.Count > 0)              // проверка на наличие строк в таблице
             {
-                strSQL = " DELETE FROM protocol WHERE id_protocol = @ID_P ";
+                strSQL = " DELETE FROM vid_status WHERE id_status = @ID_S ";
 
                 SQLAdapter.DeleteCommand = new SqlCommand(strSQL, cn);
                 // Если нажата кномка да, удаления не избежать.
@@ -664,13 +678,13 @@ namespace prohodnay
                     {
                         foreach (DataGridViewRow drv in dataGridView4.SelectedRows)
                         {
-                            SQLAdapter.DeleteCommand.Parameters.Add("@ID_P", SqlDbType.Int).Value =
-                                Convert.ToInt32(ds.Tables["PROTOCOL"].Rows[drv.Index][0]);
+                            SQLAdapter.DeleteCommand.Parameters.Add("@ID_S", SqlDbType.Int).Value =
+                                Convert.ToInt32(ds.Tables["VID_STATUS"].Rows[drv.Index][0]);
 
                             SQLAdapter.DeleteCommand.ExecuteNonQuery();
                             SQLAdapter.DeleteCommand.Parameters.Clear();
                         }
-                        load_protocol();           // обновим таблицу
+                        load_vid_status();           // обновим таблицу
                         MessageBox.Show("Успешно удалено!", "Удаление", MessageBoxButtons.OK, MessageBoxIcon.Information);
                     }
                     catch (Exception ex)
@@ -685,27 +699,26 @@ namespace prohodnay
 
         private void button6_Click(object sender, EventArgs e)
         {
-            
-            // --- [ ДОБАВЛЕНИЕ ] ---  ОПЕРАЦИОННОЙ СИСТЕМЫ
+            // --- [ ДОБАВЛЕНИЕ ] ---  СОТРУДНИК
 
             // проверим все поля на заполненность
-            if (textBox_os_name.Text == "")
+            if (textBox_sotrudnik_name.Text == "")
             {
                 MessageBox.Show("Заполните все поля", "Добавление", MessageBoxButtons.OK, MessageBoxIcon.Warning);
                 return;
             }
             // запрос на добавление
-            strSQL = "INSERT INTO os VALUES (@NAME)";
+            strSQL = "INSERT INTO sotrudnik VALUES (@NAME)";
 
             // работаем через адаптер и свойство добавления
             SQLAdapter.InsertCommand = new SqlCommand(strSQL, cn);  // новая команда создана
             // определим параметры и зададим им значения
-            SQLAdapter.InsertCommand.Parameters.Add("@NAME", SqlDbType.VarChar).Value = textBox_os_name.Text;
+            SQLAdapter.InsertCommand.Parameters.Add("@NAME", SqlDbType.VarChar).Value = textBox_sotrudnik_name.Text;
             try
             {
                 SQLAdapter.InsertCommand.ExecuteNonQuery(); // выполним запрос
                 // если удачно то...
-                load_os();           // обновим таблицу
+                //load_sotrudnik();           // обновим таблицу
                 MessageBox.Show("Успешно добавлен!", "Добавление", MessageBoxButtons.OK, MessageBoxIcon.Information);
             }
             catch (Exception ex)
@@ -722,7 +735,7 @@ namespace prohodnay
             if (ds.Tables["OS"].Rows.Count > 0)              // проверка на наличие строк в таблице
             {
                 // проверим все поля на заполненность
-                if (textBox_os_name.Text == "")
+                if (textBox_sotrudnik_name.Text == "")
                 {
                     MessageBox.Show("Заполните все поля", "Обновление", MessageBoxButtons.OK, MessageBoxIcon.Warning);
                     return;
@@ -733,14 +746,14 @@ namespace prohodnay
 
                 SQLAdapter.UpdateCommand = new SqlCommand(strSQL, cn);  // команда для обноления создана
                 // зададим значения параметрам 
-                SQLAdapter.UpdateCommand.Parameters.Add("@NAME", SqlDbType.VarChar).Value = textBox_os_name.Text;
+                SQLAdapter.UpdateCommand.Parameters.Add("@NAME", SqlDbType.VarChar).Value = textBox_sotrudnik_name.Text;
                 SQLAdapter.UpdateCommand.Parameters.Add("@ID_OS", SqlDbType.Int).Value =
                     Convert.ToInt32(ds.Tables["OS"].Rows[dataGridView2.CurrentRow.Index][0]);
                 try
                 {
                     SQLAdapter.UpdateCommand.ExecuteNonQuery(); // выполним запрос
                     // если удачно то...
-                    load_os();           // обновим таблицу
+                    //load_sotrudnik();           // обновим таблицу
                     MessageBox.Show("Запись успешно обновлена!", "Обновление", MessageBoxButtons.OK, MessageBoxIcon.Information);
                 }
                 catch (Exception ex)
@@ -777,7 +790,7 @@ namespace prohodnay
                             SQLAdapter.DeleteCommand.ExecuteNonQuery();
                             SQLAdapter.DeleteCommand.Parameters.Clear();
                         }
-                        load_os();           // обновим таблицу
+                        //load_sotrudnik();           // обновим таблицу
                         MessageBox.Show("Успешно удалено!", "Удаление", MessageBoxButtons.OK, MessageBoxIcon.Information);
                     }
                     catch (Exception ex)
@@ -792,150 +805,151 @@ namespace prohodnay
                
         private void button9_Click(object sender, EventArgs e)
         {
-            // --- [ ДОБАВЛЕНИЕ ] ---  СИГНАТУРА 
+            //// --- [ ДОБАВЛЕНИЕ ] ---  СИГНАТУРА 
           
-            // проверим все поля на заполненность
-            if (comboBox_signature_tip_attack.Text == "" || comboBox_signature_protocol.Text == "" ||
-                comboBox_signature_service.Text == "" || comboBox_signature_os.Text == "" )
-            {
-                MessageBox.Show("Заполните все поля",
-                    "Добавление", MessageBoxButtons.OK, MessageBoxIcon.Warning);
-                return;
-            }
+            //// проверим все поля на заполненность
+            //if (comboBox_signature_tip_attack.Text == "" || comboBox_signature_protocol.Text == "" ||
+            //    comboBox_signature_service.Text == "" || comboBox_signature_os.Text == "" )
+            //{
+            //    MessageBox.Show("Заполните все поля",
+            //        "Добавление", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+            //    return;
+            //}
 
-            // Сложить все имена в хеш.
-            // Хеш создаётся путём склеивания всех параметров сигнатуры. 
-            // В результате такой склейки получается уникальная последовательность
-            // по которой и будет происходить проверка при добавлении
-            string all_name = comboBox_signature_tip_attack.Text + comboBox_signature_protocol.Text +
-                comboBox_signature_service.Text + comboBox_signature_os.Text;
+            //// Сложить все имена в хеш.
+            //// Хеш создаётся путём склеивания всех параметров сигнатуры. 
+            //// В результате такой склейки получается уникальная последовательность
+            //// по которой и будет происходить проверка при добавлении
+            //string all_name = comboBox_signature_tip_attack.Text + comboBox_signature_protocol.Text +
+            //    comboBox_signature_service.Text + comboBox_signature_os.Text;
 
-            string hash_all_name = hash_md5(all_name);
+            //string hash_all_name = hash_md5(all_name);
 
-            // Сравнить хеш на совпадение в базе
-            int id_signature = 0;
-            strSQL = "SELECT id_signature AS 'id' FROM signature WHERE hash = @HASH";
-            using (SqlCommand cm = new SqlCommand(strSQL, cn))
-            {
-                cm.Parameters.Add("@HASH", SqlDbType.VarChar).Value = hash_all_name;
-                try
-                {
-                    using (SqlDataReader rd = cm.ExecuteReader())
-                    {
-                        if (rd.HasRows)
-                        {
-                            rd.Read();
-                            id_signature = Convert.ToInt32(rd["id"]);
-                        }
-                    }
-                }
-                catch (Exception ex)
-                {
-                    MessageBox.Show(ex.Message, "Ошибка", MessageBoxButtons.OK, MessageBoxIcon.Information);
-                }
-            }
+            //// Сравнить хеш на совпадение в базе
+            //int id_signature = 0;
+            //strSQL = "SELECT id_signature AS 'id' FROM signature WHERE hash = @HASH";
+            //using (SqlCommand cm = new SqlCommand(strSQL, cn))
+            //{
+            //    cm.Parameters.Add("@HASH", SqlDbType.VarChar).Value = hash_all_name;
+            //    try
+            //    {
+            //        using (SqlDataReader rd = cm.ExecuteReader())
+            //        {
+            //            if (rd.HasRows)
+            //            {
+            //                rd.Read();
+            //                id_signature = Convert.ToInt32(rd["id"]);
+            //            }
+            //        }
+            //    }
+            //    catch (Exception ex)
+            //    {
+            //        MessageBox.Show(ex.Message, "Ошибка", MessageBoxButtons.OK, MessageBoxIcon.Information);
+            //    }
+            //}
 
-            // Проверить наличие хеша на совпадение
-            // если такой хеш был найден то сразу выйти
-            if (id_signature != 0)
-            {
-                MessageBox.Show("Такая сигнатура уже есть в базе данных!", "Добавление", 
-                    MessageBoxButtons.OK, MessageBoxIcon.Information);
-                return;
-            }
+            //// Проверить наличие хеша на совпадение
+            //// если такой хеш был найден то сразу выйти
+            //if (id_signature != 0)
+            //{
+            //    MessageBox.Show("Такая сигнатура уже есть в базе данных!", "Добавление", 
+            //        MessageBoxButtons.OK, MessageBoxIcon.Information);
+            //    return;
+            //}
 
-            // если такой сигнатуры ещё нет то добавим её
-            if (id_signature == 0)
-            { 
-                // запрос на добавление
-                strSQL = " INSERT INTO signature VALUES (@ID_T, @ID_PROT, @ID_SERV, @ID_OS, @HASH) ";
+            //// если такой сигнатуры ещё нет то добавим её
+            //if (id_signature == 0)
+            //{ 
+            //    // запрос на добавление
+            //    strSQL = " INSERT INTO signature VALUES (@ID_T, @ID_PROT, @ID_SERV, @ID_OS, @HASH) ";
 
-                // работаем через адаптер и свойство добавления
-                SQLAdapter.InsertCommand = new SqlCommand(strSQL, cn);  // новая команда создана
-                // определим параметры и зададим им значения
-                SQLAdapter.InsertCommand.Parameters.Add("@ID_T", SqlDbType.Int).Value =
-                    comboBox_signature_tip_attack.SelectedValue;
-                SQLAdapter.InsertCommand.Parameters.Add("@ID_PROT", SqlDbType.Int).Value =
-                    comboBox_signature_protocol.SelectedValue;
-                SQLAdapter.InsertCommand.Parameters.Add("@ID_SERV", SqlDbType.Int).Value = 
-                    comboBox_signature_service.SelectedValue;
-                SQLAdapter.InsertCommand.Parameters.Add("@ID_OS", SqlDbType.Int).Value =
-                    comboBox_signature_os.SelectedValue;
-                SQLAdapter.InsertCommand.Parameters.Add("@HASH", SqlDbType.VarChar).Value = hash_all_name;
+            //    // работаем через адаптер и свойство добавления
+            //    SQLAdapter.InsertCommand = new SqlCommand(strSQL, cn);  // новая команда создана
+            //    // определим параметры и зададим им значения
+            //    SQLAdapter.InsertCommand.Parameters.Add("@ID_T", SqlDbType.Int).Value =
+            //        comboBox_signature_tip_attack.SelectedValue;
+            //    SQLAdapter.InsertCommand.Parameters.Add("@ID_PROT", SqlDbType.Int).Value =
+            //        comboBox_signature_protocol.SelectedValue;
+            //    SQLAdapter.InsertCommand.Parameters.Add("@ID_SERV", SqlDbType.Int).Value = 
+            //        comboBox_signature_service.SelectedValue;
+            //    SQLAdapter.InsertCommand.Parameters.Add("@ID_OS", SqlDbType.Int).Value =
+            //        comboBox_signature_os.SelectedValue;
+            //    SQLAdapter.InsertCommand.Parameters.Add("@HASH", SqlDbType.VarChar).Value = hash_all_name;
 
-                try
-                {
-                    SQLAdapter.InsertCommand.ExecuteNonQuery(); // выполним запрос    
-                    load_signature();                              // обновим таблицу
-                    MessageBox.Show("Успешно добавлен!", "Добавление", MessageBoxButtons.OK, MessageBoxIcon.Information);
-                }
-                catch (Exception ex)
-                {
-                    // если не удачно обшика с инфой
-                    MessageBox.Show(ex.Message, "Ошибка", MessageBoxButtons.OK, MessageBoxIcon.Information);
-                }
-            }
+            //    try
+            //    {
+            //        SQLAdapter.InsertCommand.ExecuteNonQuery(); // выполним запрос    
+            //        load_signature();                              // обновим таблицу
+            //        MessageBox.Show("Успешно добавлен!", "Добавление", MessageBoxButtons.OK, MessageBoxIcon.Information);
+            //    }
+            //    catch (Exception ex)
+            //    {
+            //        // если не удачно обшика с инфой
+            //        MessageBox.Show(ex.Message, "Ошибка", MessageBoxButtons.OK, MessageBoxIcon.Information);
+            //    }
+            //}
         }
                 
         private void button7_Click(object sender, EventArgs e)
         {
-            // --- [ УДАЛЕНИЕ ВЫБРАННЫХ ] ---   СИГНАТУРА
+            //// --- [ УДАЛЕНИЕ ВЫБРАННЫХ ] ---   СИГНАТУРА
 
-            if (ds.Tables["SIGNATURE"].Rows.Count > 0)              // проверка на наличие строк в таблице
-            {
-                strSQL = " DELETE FROM signature WHERE id_signature = @ID_S ";
+            //if (ds.Tables["SIGNATURE"].Rows.Count > 0)              // проверка на наличие строк в таблице
+            //{
+            //    strSQL = " DELETE FROM signature WHERE id_signature = @ID_S ";
 
-                SQLAdapter.DeleteCommand = new SqlCommand(strSQL, cn);
-                // Если нажата кномка да, удаления не избежать.
-                if (DialogResult.Yes == MessageBox.Show("Вы уверены в удалении? \nЗаписей:  "
-                    + dataGridView3.SelectedRows.Count.ToString(), "Удаление", MessageBoxButtons.YesNo,
-                    MessageBoxIcon.Question, MessageBoxDefaultButton.Button1))
-                {
-                    try
-                    {
-                        foreach (DataGridViewRow drv in dataGridView3.SelectedRows)
-                        {
-                            SQLAdapter.DeleteCommand.Parameters.Add("@ID_S", SqlDbType.Int).Value =
-                                Convert.ToInt32(ds.Tables["SIGNATURE"].Rows[drv.Index][0]);
+            //    SQLAdapter.DeleteCommand = new SqlCommand(strSQL, cn);
+            //    // Если нажата кномка да, удаления не избежать.
+            //    if (DialogResult.Yes == MessageBox.Show("Вы уверены в удалении? \nЗаписей:  "
+            //        + dataGridView3.SelectedRows.Count.ToString(), "Удаление", MessageBoxButtons.YesNo,
+            //        MessageBoxIcon.Question, MessageBoxDefaultButton.Button1))
+            //    {
+            //        try
+            //        {
+            //            foreach (DataGridViewRow drv in dataGridView3.SelectedRows)
+            //            {
+            //                SQLAdapter.DeleteCommand.Parameters.Add("@ID_S", SqlDbType.Int).Value =
+            //                    Convert.ToInt32(ds.Tables["SIGNATURE"].Rows[drv.Index][0]);
 
-                            SQLAdapter.DeleteCommand.ExecuteNonQuery();
-                            SQLAdapter.DeleteCommand.Parameters.Clear();
-                        }
-                        load_signature();           // обновим таблицу
-                        MessageBox.Show("Успешно удалено!", "Удаление", MessageBoxButtons.OK, MessageBoxIcon.Information);
-                    }
-                    catch (Exception ex)
-                    {
-                        MessageBox.Show(ex.Message, "Ошибка", MessageBoxButtons.OK, MessageBoxIcon.Information);
-                    }
-                }
-            }
-            else
-                MessageBox.Show("Таблица пуста", "Удаление", MessageBoxButtons.OK, MessageBoxIcon.Information);
+            //                SQLAdapter.DeleteCommand.ExecuteNonQuery();
+            //                SQLAdapter.DeleteCommand.Parameters.Clear();
+            //            }
+            //            load_signature();           // обновим таблицу
+            //            MessageBox.Show("Успешно удалено!", "Удаление", MessageBoxButtons.OK, MessageBoxIcon.Information);
+            //        }
+            //        catch (Exception ex)
+            //        {
+            //            MessageBox.Show(ex.Message, "Ошибка", MessageBoxButtons.OK, MessageBoxIcon.Information);
+            //        }
+            //    }
+            //}
+            //else
+            //    MessageBox.Show("Таблица пуста", "Удаление", MessageBoxButtons.OK, MessageBoxIcon.Information);
         }
 
         private void button28_Click(object sender, EventArgs e)
         {
-            // --- [ ДОБАВЛЕНИЕ ] ---  ТИП АТАКИ
+            // --- [ ДОБАВЛЕНИЕ ] --- ПРОПУСК
 
             // проверим все поля на заполненность
-            if (textBox_tip_attack_name.Text == "")
+            if (textBox_propusk_num.Text == "" || comboBox_propusk_status.Text == "")
             {
                 MessageBox.Show("Заполните все поля", "Добавление", MessageBoxButtons.OK, MessageBoxIcon.Warning);
                 return;
             }
             // запрос на добавление
-            strSQL = "INSERT INTO tip_attack VALUES (@NAME)";
+            strSQL = "INSERT INTO propusk VALUES (@NAME, @STATUS)";
 
             // работаем через адаптер и свойство добавления
             SQLAdapter.InsertCommand = new SqlCommand(strSQL, cn);  // новая команда создана
             // определим параметры и зададим им значения
-            SQLAdapter.InsertCommand.Parameters.Add("@NAME", SqlDbType.VarChar).Value = textBox_tip_attack_name.Text;
+            SQLAdapter.InsertCommand.Parameters.Add("@NAME", SqlDbType.VarChar).Value = textBox_propusk_num.Text;
+            SQLAdapter.InsertCommand.Parameters.Add("@STATUS", SqlDbType.Int).Value = comboBox_propusk_status.SelectedValue;
             try
             {
                 SQLAdapter.InsertCommand.ExecuteNonQuery(); // выполним запрос
                 // если удачно то...
-                load_tip_attack();          // обновим таблицу
+                //load_propusk();          // обновим таблицу
                 MessageBox.Show("Успешно добавлен!", "Добавление", MessageBoxButtons.OK, MessageBoxIcon.Information);
             }
             catch (Exception ex)
@@ -947,294 +961,183 @@ namespace prohodnay
 
         private void button27_Click(object sender, EventArgs e)
         {
-            // --- [ ОБНОВЛЕНИЕ ] ---   ТИП АТАКИ
+            //// --- [ ОБНОВЛЕНИЕ ] ---   ТИП АТАКИ
 
-            if (ds.Tables["TIP_ATTACK"].Rows.Count > 0)              // проверка на наличие строк в таблице
-            {
-                // проверим все поля на заполненность
-                if (textBox_tip_attack_name.Text == "")
-                {
-                    MessageBox.Show("Заполните все поля", "Обновление", MessageBoxButtons.OK, MessageBoxIcon.Warning);
-                    return;
-                }
+            //if (ds.Tables["TIP_ATTACK"].Rows.Count > 0)              // проверка на наличие строк в таблице
+            //{
+            //    // проверим все поля на заполненность
+            //    if (textBox_propusk_num.Text == "")
+            //    {
+            //        MessageBox.Show("Заполните все поля", "Обновление", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+            //        return;
+            //    }
 
-                // запрос на обновление
-                strSQL = " UPDATE tip_attack SET name = @NAME WHERE id_tip_attack = @ID_A ";
+            //    // запрос на обновление
+            //    strSQL = " UPDATE tip_attack SET name = @NAME WHERE id_tip_attack = @ID_A ";
 
-                SQLAdapter.UpdateCommand = new SqlCommand(strSQL, cn);  // команда для обноления создана
-                // зададим значения параметрам 
-                SQLAdapter.UpdateCommand.Parameters.Add("@NAME", SqlDbType.VarChar).Value = textBox_tip_attack_name.Text;
-                SQLAdapter.UpdateCommand.Parameters.Add("@ID_A", SqlDbType.Int).Value =
-                    Convert.ToInt32(ds.Tables["TIP_ATTACK"].Rows[dataGridView8.CurrentRow.Index][0]);
-                try
-                {
-                    SQLAdapter.UpdateCommand.ExecuteNonQuery(); // выполним запрос
-                    // если удачно то...
-                    load_tip_attack();           // обновим таблицу
-                    MessageBox.Show("Запись успешно обновлена!", "Обновление", MessageBoxButtons.OK, MessageBoxIcon.Information);
-                }
-                catch (Exception ex)
-                {
-                    // если запрос выполнился не удачно то ошибка с инфой
-                    MessageBox.Show(ex.Message, "Ошибка", MessageBoxButtons.OK, MessageBoxIcon.Information);
-                }
-            }
-            else
-                MessageBox.Show("Таблица пуста", "Обновление", MessageBoxButtons.OK, MessageBoxIcon.Information);
+            //    SQLAdapter.UpdateCommand = new SqlCommand(strSQL, cn);  // команда для обноления создана
+            //    // зададим значения параметрам 
+            //    SQLAdapter.UpdateCommand.Parameters.Add("@NAME", SqlDbType.VarChar).Value = textBox_propusk_num.Text;
+            //    SQLAdapter.UpdateCommand.Parameters.Add("@ID_A", SqlDbType.Int).Value =
+            //        Convert.ToInt32(ds.Tables["TIP_ATTACK"].Rows[dataGridView8.CurrentRow.Index][0]);
+            //    try
+            //    {
+            //        SQLAdapter.UpdateCommand.ExecuteNonQuery(); // выполним запрос
+            //        // если удачно то...
+            //        load_tip_attack();           // обновим таблицу
+            //        MessageBox.Show("Запись успешно обновлена!", "Обновление", MessageBoxButtons.OK, MessageBoxIcon.Information);
+            //    }
+            //    catch (Exception ex)
+            //    {
+            //        // если запрос выполнился не удачно то ошибка с инфой
+            //        MessageBox.Show(ex.Message, "Ошибка", MessageBoxButtons.OK, MessageBoxIcon.Information);
+            //    }
+            //}
+            //else
+            //    MessageBox.Show("Таблица пуста", "Обновление", MessageBoxButtons.OK, MessageBoxIcon.Information);
         }
 
         private void button26_Click(object sender, EventArgs e)
         {
-            // --- [ УДАЛЕНИЕ ВЫБРАННЫХ ] ---   ТИП АТАКИ
+            //// --- [ УДАЛЕНИЕ ВЫБРАННЫХ ] ---   ТИП АТАКИ
 
-            if (ds.Tables["TIP_ATTACK"].Rows.Count > 0)              // проверка на наличие строк в таблице
-            {
-                strSQL = " DELETE FROM tip_attack WHERE id_tip_attack = @ID_A ";
+            //if (ds.Tables["TIP_ATTACK"].Rows.Count > 0)              // проверка на наличие строк в таблице
+            //{
+            //    strSQL = " DELETE FROM tip_attack WHERE id_tip_attack = @ID_A ";
 
-                SQLAdapter.DeleteCommand = new SqlCommand(strSQL, cn);
-                // Если нажата кномка да, удаления не избежать.
-                if (DialogResult.Yes == MessageBox.Show("Вы уверены в удалении? \nЗаписей:  "
-                    + dataGridView8.SelectedRows.Count.ToString(), "Удаление", MessageBoxButtons.YesNo,
-                    MessageBoxIcon.Question, MessageBoxDefaultButton.Button1))
-                {
-                    try
-                    {
-                        foreach (DataGridViewRow drv in dataGridView8.SelectedRows)
-                        {
-                            SQLAdapter.DeleteCommand.Parameters.Add("@ID_A", SqlDbType.Int).Value =
-                                Convert.ToInt32(ds.Tables["TIP_ATTACK"].Rows[drv.Index][0]);
+            //    SQLAdapter.DeleteCommand = new SqlCommand(strSQL, cn);
+            //    // Если нажата кномка да, удаления не избежать.
+            //    if (DialogResult.Yes == MessageBox.Show("Вы уверены в удалении? \nЗаписей:  "
+            //        + dataGridView8.SelectedRows.Count.ToString(), "Удаление", MessageBoxButtons.YesNo,
+            //        MessageBoxIcon.Question, MessageBoxDefaultButton.Button1))
+            //    {
+            //        try
+            //        {
+            //            foreach (DataGridViewRow drv in dataGridView8.SelectedRows)
+            //            {
+            //                SQLAdapter.DeleteCommand.Parameters.Add("@ID_A", SqlDbType.Int).Value =
+            //                    Convert.ToInt32(ds.Tables["TIP_ATTACK"].Rows[drv.Index][0]);
 
-                            SQLAdapter.DeleteCommand.ExecuteNonQuery();
-                            SQLAdapter.DeleteCommand.Parameters.Clear();
-                        }
-                        load_tip_attack();           // обновим таблицу
-                        MessageBox.Show("Успешно удалено!", "Удаление", MessageBoxButtons.OK, MessageBoxIcon.Information);
-                    }
-                    catch (Exception ex)
-                    {
-                        MessageBox.Show(ex.Message, "Ошибка", MessageBoxButtons.OK, MessageBoxIcon.Information);
-                    }
-                }
-            }
-            else
-                MessageBox.Show("Таблица пуста", "Удаление", MessageBoxButtons.OK, MessageBoxIcon.Information);
+            //                SQLAdapter.DeleteCommand.ExecuteNonQuery();
+            //                SQLAdapter.DeleteCommand.Parameters.Clear();
+            //            }
+            //            load_tip_attack();           // обновим таблицу
+            //            MessageBox.Show("Успешно удалено!", "Удаление", MessageBoxButtons.OK, MessageBoxIcon.Information);
+            //        }
+            //        catch (Exception ex)
+            //        {
+            //            MessageBox.Show(ex.Message, "Ошибка", MessageBoxButtons.OK, MessageBoxIcon.Information);
+            //        }
+            //    }
+            //}
+            //else
+            //    MessageBox.Show("Таблица пуста", "Удаление", MessageBoxButtons.OK, MessageBoxIcon.Information);
         }
 
         private void button3_Click(object sender, EventArgs e)
         {
-            // --- [ ДОБАВЛЕНИЕ ] ---  СЕРВИС
+            //// --- [ ДОБАВЛЕНИЕ ] ---  СЕРВИС
 
-            // проверим все поля на заполненность
-            if (textBox_service_name.Text == "")
-            {
-                MessageBox.Show("Заполните все поля", "Добавление", MessageBoxButtons.OK, MessageBoxIcon.Warning);
-                return;
-            }
-            // запрос на добавление
-            strSQL = "INSERT INTO service VALUES (@NAME)";
+            //// проверим все поля на заполненность
+            //if (textBox_service_name.Text == "")
+            //{
+            //    MessageBox.Show("Заполните все поля", "Добавление", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+            //    return;
+            //}
+            //// запрос на добавление
+            //strSQL = "INSERT INTO service VALUES (@NAME)";
 
-            // работаем через адаптер и свойство добавления
-            SQLAdapter.InsertCommand = new SqlCommand(strSQL, cn);  // новая команда создана
-            // определим параметры и зададим им значения
-            SQLAdapter.InsertCommand.Parameters.Add("@NAME", SqlDbType.VarChar).Value = textBox_service_name.Text;
-            try
-            {
-                SQLAdapter.InsertCommand.ExecuteNonQuery(); // выполним запрос
-                // если удачно то...
-                load_service();           // обновим таблицу
-                MessageBox.Show("Успешно добавлен!", "Добавление", MessageBoxButtons.OK, MessageBoxIcon.Information);
-            }
-            catch (Exception ex)
-            {
-                // если не удачно обшика с инфой
-                MessageBox.Show(ex.Message, "Ошибка", MessageBoxButtons.OK, MessageBoxIcon.Information);
-            }
+            //// работаем через адаптер и свойство добавления
+            //SQLAdapter.InsertCommand = new SqlCommand(strSQL, cn);  // новая команда создана
+            //// определим параметры и зададим им значения
+            //SQLAdapter.InsertCommand.Parameters.Add("@NAME", SqlDbType.VarChar).Value = textBox_service_name.Text;
+            //try
+            //{
+            //    SQLAdapter.InsertCommand.ExecuteNonQuery(); // выполним запрос
+            //    // если удачно то...
+            //    load_service();           // обновим таблицу
+            //    MessageBox.Show("Успешно добавлен!", "Добавление", MessageBoxButtons.OK, MessageBoxIcon.Information);
+            //}
+            //catch (Exception ex)
+            //{
+            //    // если не удачно обшика с инфой
+            //    MessageBox.Show(ex.Message, "Ошибка", MessageBoxButtons.OK, MessageBoxIcon.Information);
+            //}
         }
 
         private void button2_Click(object sender, EventArgs e)
         {
-            // --- [ ОБНОВЛЕНИЕ ] ---  СЕРВИС
+            //// --- [ ОБНОВЛЕНИЕ ] ---  СЕРВИС
 
-            if (ds.Tables["SERVICE"].Rows.Count > 0)              // проверка на наличие строк в таблице
-            {
-                // проверим все поля на заполненность
-                if (textBox_service_name.Text == "")
-                {
-                    MessageBox.Show("Заполните все поля", "Обновление", MessageBoxButtons.OK, MessageBoxIcon.Warning);
-                    return;
-                }
+            //if (ds.Tables["SERVICE"].Rows.Count > 0)              // проверка на наличие строк в таблице
+            //{
+            //    // проверим все поля на заполненность
+            //    if (textBox_service_name.Text == "")
+            //    {
+            //        MessageBox.Show("Заполните все поля", "Обновление", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+            //        return;
+            //    }
 
-                // запрос на обновление
-                strSQL = " UPDATE service SET name = @NAME WHERE id_service = @ID_S ";
+            //    // запрос на обновление
+            //    strSQL = " UPDATE service SET name = @NAME WHERE id_service = @ID_S ";
 
-                SQLAdapter.UpdateCommand = new SqlCommand(strSQL, cn);  // команда для обноления создана
-                // зададим значения параметрам 
-                SQLAdapter.UpdateCommand.Parameters.Add("@NAME", SqlDbType.VarChar).Value = textBox_service_name.Text;
-                SQLAdapter.UpdateCommand.Parameters.Add("@ID_S", SqlDbType.Int).Value =
-                    Convert.ToInt32(ds.Tables["SERVICE"].Rows[dataGridView1.CurrentRow.Index][0]);
-                try
-                {
-                    SQLAdapter.UpdateCommand.ExecuteNonQuery(); // выполним запрос
-                    // если удачно то...
-                    load_service();           // обновим таблицу
-                    MessageBox.Show("Запись успешно обновлена!", "Обновление", MessageBoxButtons.OK, MessageBoxIcon.Information);
-                }
-                catch (Exception ex)
-                {
-                    // если запрос выполнился не удачно то ошибка с инфой
-                    MessageBox.Show(ex.Message, "Ошибка", MessageBoxButtons.OK, MessageBoxIcon.Information);
-                }
-            }
-            else
-                MessageBox.Show("Таблица пуста", "Обновление", MessageBoxButtons.OK, MessageBoxIcon.Information);
+            //    SQLAdapter.UpdateCommand = new SqlCommand(strSQL, cn);  // команда для обноления создана
+            //    // зададим значения параметрам 
+            //    SQLAdapter.UpdateCommand.Parameters.Add("@NAME", SqlDbType.VarChar).Value = textBox_service_name.Text;
+            //    SQLAdapter.UpdateCommand.Parameters.Add("@ID_S", SqlDbType.Int).Value =
+            //        Convert.ToInt32(ds.Tables["SERVICE"].Rows[dataGridView1.CurrentRow.Index][0]);
+            //    try
+            //    {
+            //        SQLAdapter.UpdateCommand.ExecuteNonQuery(); // выполним запрос
+            //        // если удачно то...
+            //        load_service();           // обновим таблицу
+            //        MessageBox.Show("Запись успешно обновлена!", "Обновление", MessageBoxButtons.OK, MessageBoxIcon.Information);
+            //    }
+            //    catch (Exception ex)
+            //    {
+            //        // если запрос выполнился не удачно то ошибка с инфой
+            //        MessageBox.Show(ex.Message, "Ошибка", MessageBoxButtons.OK, MessageBoxIcon.Information);
+            //    }
+            //}
+            //else
+            //    MessageBox.Show("Таблица пуста", "Обновление", MessageBoxButtons.OK, MessageBoxIcon.Information);
         }
 
         private void button1_Click(object sender, EventArgs e)
         {
-            // --- [ УДАЛЕНИЕ ВЫБРАННЫХ ] ---   СЕРВИС
+            //// --- [ УДАЛЕНИЕ ВЫБРАННЫХ ] ---   СЕРВИС
 
-            if (ds.Tables["SERVICE"].Rows.Count > 0)              // проверка на наличие строк в таблице
-            {
-                strSQL = " DELETE FROM service WHERE id_service = @ID_S ";
+            //if (ds.Tables["SERVICE"].Rows.Count > 0)              // проверка на наличие строк в таблице
+            //{
+            //    strSQL = " DELETE FROM service WHERE id_service = @ID_S ";
 
-                SQLAdapter.DeleteCommand = new SqlCommand(strSQL, cn);
-                // Если нажата кномка да, удаления не избежать.
-                if (DialogResult.Yes == MessageBox.Show("Вы уверены в удалении? \nЗаписей:  "
-                    + dataGridView1.SelectedRows.Count.ToString(), "Удаление", MessageBoxButtons.YesNo,
-                    MessageBoxIcon.Question, MessageBoxDefaultButton.Button1))
-                {
-                    try
-                    {
-                        foreach (DataGridViewRow drv in dataGridView1.SelectedRows)
-                        {
-                            SQLAdapter.DeleteCommand.Parameters.Add("@ID_S", SqlDbType.Int).Value =
-                                Convert.ToInt32(ds.Tables["SERVICE"].Rows[drv.Index][0]);
+            //    SQLAdapter.DeleteCommand = new SqlCommand(strSQL, cn);
+            //    // Если нажата кномка да, удаления не избежать.
+            //    if (DialogResult.Yes == MessageBox.Show("Вы уверены в удалении? \nЗаписей:  "
+            //        + dataGridView1.SelectedRows.Count.ToString(), "Удаление", MessageBoxButtons.YesNo,
+            //        MessageBoxIcon.Question, MessageBoxDefaultButton.Button1))
+            //    {
+            //        try
+            //        {
+            //            foreach (DataGridViewRow drv in dataGridView1.SelectedRows)
+            //            {
+            //                SQLAdapter.DeleteCommand.Parameters.Add("@ID_S", SqlDbType.Int).Value =
+            //                    Convert.ToInt32(ds.Tables["SERVICE"].Rows[drv.Index][0]);
 
-                            SQLAdapter.DeleteCommand.ExecuteNonQuery();
-                            SQLAdapter.DeleteCommand.Parameters.Clear();
-                        }
-                        load_service();           // обновим таблицу
-                        MessageBox.Show("Успешно удалено!", "Удаление", MessageBoxButtons.OK, MessageBoxIcon.Information);
-                    }
-                    catch (Exception ex)
-                    {
-                        MessageBox.Show(ex.Message, "Ошибка", MessageBoxButtons.OK, MessageBoxIcon.Information);
-                    }
-                }
-            }
-            else
-                MessageBox.Show("Таблица пуста", "Удаление", MessageBoxButtons.OK, MessageBoxIcon.Information);
-        }
-
-        private void checkBox_tip_attack_CheckedChanged(object sender, EventArgs e)
-        {
-            if (checkBox_tip_attack.Checked == false)
-            {
-                comboBox_signature_tip_attack_f.Enabled = false;
-                comboBox_signature_tip_attack_f.Text = "";
-            }
-            else
-                comboBox_signature_tip_attack_f.Enabled = true;
-            filter();
-        }
-
-        private void checkBox_protocol_CheckedChanged(object sender, EventArgs e)
-        {
-            if (checkBox_protocol.Checked == false)
-            {
-                comboBox_signature_protocol_f.Enabled = false;
-                comboBox_signature_protocol_f.Text = "";
-            }
-            else
-                comboBox_signature_protocol_f.Enabled = true;
-            filter();
-        }
-
-        private void checkBox_service_CheckedChanged(object sender, EventArgs e)
-        {
-            if (checkBox_service.Checked == false)
-            {
-                comboBox_signature_service_f.Enabled = false;
-                comboBox_signature_service_f.Text = "";
-            }
-            else
-                comboBox_signature_service_f.Enabled = true;
-            filter();
-        }
-
-        private void checkBox_os_CheckedChanged(object sender, EventArgs e)
-        {
-            if (checkBox_os.Checked == false)
-            {
-                comboBox_signature_os_f.Enabled = false;
-                comboBox_signature_os_f.Text = "";
-            }
-            else
-                comboBox_signature_os_f.Enabled = true;
-            filter();
-        }
-
-        private void comboBox_signature_tip_attack_f_SelectedIndexChanged(object sender, EventArgs e)
-        {
-            filter();
-        }
-
-        private void comboBox_signature_protocol_f_SelectedIndexChanged(object sender, EventArgs e)
-        {
-            filter();
-        }
-
-        private void comboBox_signature_service_f_SelectedIndexChanged(object sender, EventArgs e)
-        {
-            filter();
-        }
-
-        private void comboBox_signature_os_f_SelectedIndexChanged(object sender, EventArgs e)
-        {
-            filter();
-        }
-
-        private void tabPage5_Enter(object sender, EventArgs e)
-        {
-            // ВКЛАДКА ФИЛЬТРАЦИЯ
-            // для корректной работы вкладок сигнатуры и фльтрации
-            // они используют одну и ту же таблицу SIGNATURE 
-
-            dataGridView3.DataSource = null;
-            dataGridView5.DataSource = bs_signature;
-
-            comboBox_signature_tip_attack.DataSource = null;
-            comboBox_signature_protocol.DataSource = null;
-            comboBox_signature_service.DataSource = null;
-            comboBox_signature_os.DataSource = null;
-
-            spravochnik_reload_f();
-
-            check_v();
-            controls_start();
-            filter();
-        }
-
-        private void tabPage3_Enter(object sender, EventArgs e)
-        {
-            // ВКЛАДКА СИГНАТУРА
-            // для корректной работы вкладок сигнатуры и фльтрации
-            // они используют одну и ту же таблицу SIGNATURE 
-
-            BindingSource bs = new BindingSource();
-            bs.DataSource = ds.Tables["SIGNATURE"];
-            bs.RemoveFilter();
-
-            dataGridView3.DataSource = bs_signature;
-            dataGridView5.DataSource = null;
-
-            comboBox_signature_tip_attack_f.DataSource = null;
-            comboBox_signature_protocol_f.DataSource = null;
-            comboBox_signature_service_f.DataSource = null;
-            comboBox_signature_os_f.DataSource = null;
-
-            spravochnik_reload();
-
+            //                SQLAdapter.DeleteCommand.ExecuteNonQuery();
+            //                SQLAdapter.DeleteCommand.Parameters.Clear();
+            //            }
+            //            load_service();           // обновим таблицу
+            //            MessageBox.Show("Успешно удалено!", "Удаление", MessageBoxButtons.OK, MessageBoxIcon.Information);
+            //        }
+            //        catch (Exception ex)
+            //        {
+            //            MessageBox.Show(ex.Message, "Ошибка", MessageBoxButtons.OK, MessageBoxIcon.Information);
+            //        }
+            //    }
+            //}
+            //else
+            //    MessageBox.Show("Таблица пуста", "Удаление", MessageBoxButtons.OK, MessageBoxIcon.Information);
         }
     }
 }
