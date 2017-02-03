@@ -26,6 +26,7 @@ namespace prohodnay
         BindingSource bs_vid_status = new BindingSource();
         BindingSource bs_sotrudnik = new BindingSource();
         BindingSource bs_propusk = new BindingSource();
+        BindingSource bs_svobod_propusk = new BindingSource();
         BindingSource bs_service = new BindingSource();
         BindingSource bs_tip_attack = new BindingSource();
         BindingSource bs_signature = new BindingSource();
@@ -129,17 +130,31 @@ namespace prohodnay
             dataGridView8.DataSource = bs_propusk;
         }
 
-        //void load_sotrudnik()                   // функция для отображения информации
-        //{
-        //    ds.Tables["SOTRUDNIK"].Clear();
-        //    strSQL = " SELECT id_os AS '№_Операционной_системы', name AS 'Операционная_система' FROM os";
-        //    SQLAdapter = new SqlDataAdapter(strSQL, cn);
+        void load_svobod_propusk()
+        {
+            ds.Tables["SVOBOD_PROPUSK"].Clear();
+            strSQL = " SELECT id_propusk AS 'id_Пропуска', num_propusk AS '№_Пропуска', " +
+                     " id_status AS 'Статус' FROM propusk WHERE id_status = 1 ";
+            SQLAdapter = new SqlDataAdapter(strSQL, cn);
 
-        //    SQLAdapter.Fill(ds, "OS");
+            SQLAdapter.Fill(ds, "SVOBOD_PROPUSK");
 
-        //    bs_sotrudnik.DataSource = ds.Tables["OS"];
-        //    dataGridView2.DataSource = bs_sotrudnik;
-        //}
+            bs_svobod_propusk.DataSource = ds.Tables["SVOBOD_PROPUSK"];
+        }
+
+        void load_sotrudnik()                   // функция для отображения информации
+        {
+            ds.Tables["SOTRUDNIK"].Clear();
+            strSQL = " SELECT sotrudnik.id_sotrudnik AS '№_Сотрудника', sotrudnik.name AS 'ФИО', " + 
+                     " propusk.num_propusk AS '№_Пропуска', sotrudnik.doljnost AS 'Должность' FROM sotrudnik " + 
+                     " JOIN propusk ON sotrudnik.id_propusk = propusk.id_propusk";
+            SQLAdapter = new SqlDataAdapter(strSQL, cn);
+
+            SQLAdapter.Fill(ds, "SOTRUDNIK");
+
+            bs_sotrudnik.DataSource = ds.Tables["SOTRUDNIK"];
+            dataGridView2.DataSource = bs_sotrudnik;
+        }
 
         //void load_signature()                   // функция для отображения информации
         //{
@@ -309,7 +324,7 @@ namespace prohodnay
             // ------------------------------------------------------------------------------------- 
           
             //
-            // --- [ ЗАГРУЗКА ] ---   СОТРУДНИК ----------------------------------------------------
+            // --- [ ЗАГРУЗКА ] ---   ПРОПУСК ------------------------------------------------------
             ds.Tables.Add("PROPUSK");
             load_propusk();
             dataGridView8.SelectionMode = DataGridViewSelectionMode.FullRowSelect;
@@ -319,16 +334,23 @@ namespace prohodnay
             // --------------------------------------------------------------------------------------
             
             //
+            // --- [ ЗАГРУЗКА ] ---   СВОБОДНЫЕ ПРОПУСКИ --------------------------------------------
+            ds.Tables.Add("SVOBOD_PROPUSK");
+            load_svobod_propusk();
+            // --------------------------------------------------------------------------------------
+            
+            //
             // --- [ ЗАГРУЗКА ] ---   СИГНАТУРА -----------------------------------------------------
-            //ds.Tables.Add("SIGNATURE");
-            //load_signature();
-            //dataGridView3.SelectionMode = DataGridViewSelectionMode.FullRowSelect;
-            //dataGridView3.AutoSizeColumnsMode = DataGridViewAutoSizeColumnsMode.Fill;
-            //comboBox_signature_tip_attack.DataBindings.Add(new Binding("Text", bs_signature, "Тип_атаки", false, DataSourceUpdateMode.Never));
-            //comboBox_signature_protocol.DataBindings.Add(new Binding("Text", bs_signature, "Протокол", false, DataSourceUpdateMode.Never));
-            //comboBox_signature_service.DataBindings.Add(new Binding("Text", bs_signature, "Сервис", false, DataSourceUpdateMode.Never));
-            //comboBox_signature_os.DataBindings.Add(new Binding("Text", bs_signature, "Операционная_система", false, DataSourceUpdateMode.Never));
-            //// --------------------------------------------------------------------------------------
+            ds.Tables.Add("SOTRUDNIK");
+            load_sotrudnik();
+            dataGridView2.SelectionMode = DataGridViewSelectionMode.FullRowSelect;
+            dataGridView2.AutoSizeColumnsMode = DataGridViewAutoSizeColumnsMode.Fill;
+            strSQL = " SELECT id_sotrudnik AS '№_Сотрудника', name AS 'ФИО', " + 
+                     " id_propusk AS '№_Пропуска', doljnost AS 'Должность' FROM sotrudnik ";
+            textBox_sotrudnik_name.DataBindings.Add(new Binding("Text", bs_sotrudnik, "ФИО", false, DataSourceUpdateMode.Never));
+            textBox_sotrudnik_doljn.DataBindings.Add(new Binding("Text", bs_sotrudnik, "Должность", false, DataSourceUpdateMode.Never));
+            comboBox_sotrudnik_num_propusk.DataBindings.Add(new Binding("Text", bs_sotrudnik, "№_Пропуска", false, DataSourceUpdateMode.Never));
+            // --------------------------------------------------------------------------------------
 
             ////
             //// --- [ ЗАГРУЗКА ] ---   ФИЛЬТРАЦИЯ ----------------------------------------------------
@@ -357,6 +379,10 @@ namespace prohodnay
             comboBox_propusk_status.DataSource = bs_vid_status;
             comboBox_propusk_status.DisplayMember = "Вид_статуса";
             comboBox_propusk_status.ValueMember = "id_Статуса";
+
+            comboBox_sotrudnik_num_propusk.DataSource = bs_svobod_propusk;
+            comboBox_sotrudnik_num_propusk.DisplayMember = "№_Пропуска";
+            comboBox_sotrudnik_num_propusk.ValueMember = "id_Пропуска";
 
             //object[] list_status = { "Свободен", "Занят", "Утерян", "Брак" };
             //comboBox_propusk_status.Items.AddRange(list_status);
@@ -712,45 +738,120 @@ namespace prohodnay
             // --- [ ДОБАВЛЕНИЕ ] ---  СОТРУДНИК
 
             // проверим все поля на заполненность
-            if (textBox_sotrudnik_name.Text == "")
+            if (textBox_sotrudnik_name.Text == "" || comboBox_sotrudnik_num_propusk.Text == "" 
+                || textBox_sotrudnik_doljn.Text == "")
             {
                 MessageBox.Show("Заполните все поля", "Добавление", MessageBoxButtons.OK, MessageBoxIcon.Warning);
                 return;
             }
             // запрос на добавление
-            strSQL = "INSERT INTO sotrudnik VALUES (@NAME)";
+            strSQL = " INSERT INTO sotrudnik VALUES (@NAME, @ID_P, @DOLJ); " + 
+                     " UPDATE propusk SET id_status = 2 WHERE id_propusk = @ID_P; ";
 
-            // работаем через адаптер и свойство добавления
-            SQLAdapter.InsertCommand = new SqlCommand(strSQL, cn);  // новая команда создана
-            // определим параметры и зададим им значения
-            SQLAdapter.InsertCommand.Parameters.Add("@NAME", SqlDbType.VarChar).Value = textBox_sotrudnik_name.Text;
-            try
+            using (SqlCommand cm = new SqlCommand(strSQL, cn))
             {
-                SQLAdapter.InsertCommand.ExecuteNonQuery(); // выполним запрос
-                // если удачно то...
-                //load_sotrudnik();           // обновим таблицу
-                MessageBox.Show("Успешно добавлен!", "Добавление", MessageBoxButtons.OK, MessageBoxIcon.Information);
-            }
-            catch (Exception ex)
-            {
-                // если не удачно обшика с инфой
-                MessageBox.Show(ex.Message, "Ошибка", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                cm.Parameters.Add("@NAME", SqlDbType.VarChar).Value = textBox_sotrudnik_name.Text;
+                cm.Parameters.Add("@DOLJ", SqlDbType.VarChar).Value = textBox_sotrudnik_name.Text;
+                cm.Parameters.Add("@ID_P", SqlDbType.Int).Value = comboBox_sotrudnik_num_propusk.SelectedValue;
+                try
+                {
+                    cm.ExecuteNonQuery();
+                    load_sotrudnik();           // обновим таблицу
+                    load_propusk();
+                    MessageBox.Show("Успешно добавлен!", "Добавление", 
+                        MessageBoxButtons.OK, MessageBoxIcon.Information);
+                }
+                catch (Exception ex)
+                {
+                    MessageBox.Show(ex.Message, "Ошибка", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                }
             }
         }
 
         private void button5_Click(object sender, EventArgs e)
         {
-            // --- [ ОБНОВЛЕНИЕ ] ---   ОПЕРАЦИОННОЙ СИСТЕМЫ
+            // --- [ ОБНОВЛЕНИЕ ] ---   СОТРУДНИК
 
-            if (ds.Tables["OS"].Rows.Count > 0)              // проверка на наличие строк в таблице
+            if (ds.Tables["SOTRUDNIK"].Rows.Count > 0)              // проверка на наличие строк в таблице
             {
                 // проверим все поля на заполненность
-                if (textBox_sotrudnik_name.Text == "")
+                if (textBox_sotrudnik_name.Text == "" || comboBox_sotrudnik_num_propusk.Text == "" 
+                    || textBox_sotrudnik_doljn.Text == "")
                 {
                     MessageBox.Show("Заполните все поля", "Обновление", MessageBoxButtons.OK, MessageBoxIcon.Warning);
                     return;
                 }
 
+                // ДЕЛАТЬ ВЫБОРКУ НЕ ПО НОМЕРУ А ПО ID!!!!!!!!!!!
+                /* Вытащим номер пропуска id которого такое же как у id 
+                 * выбранного в данный момент пропуска в comboBox.
+                 */
+                int num_propusk = 0;
+                strSQL = "SELECT id_propusk FROM propusk WHERE num_propusk = @NUM_P";
+                using (SqlCommand cm = new SqlCommand(strSQL, cn))
+                {
+                    cm.Parameters.Add("@NUM_P", SqlDbType.Int).Value = 
+                        Convert.ToInt32(ds.Tables["SOTRUDNIK"].Rows[dataGridView2.CurrentRow.Index][2]);
+                    try
+                    {
+                        using (SqlDataReader rd = cm.ExecuteReader())
+                        {
+                            if (rd.HasRows)
+                            {
+                                rd.Read();
+                                num_propusk = Convert.ToInt32(rd["id_propusk"]);
+                            }
+                        }
+                    }
+                    catch (Exception ex)
+                    {
+                        MessageBox.Show(ex.Message, "Ошибка", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                    }
+                }
+              
+
+                /* Если номера пропусков не совпали -> значит для обновления был выбран 
+                 * другой номер пропуска. Следовательно освободим текущий пропуск, 
+                 * обновим стутус на -сободен- 
+                 */
+                if (ds.Tables["SOTRUDNIK"].Rows[dataGridView2.CurrentRow.Index][2].ToString() != num_propusk)
+                {
+                    // освободить пропуск, а замтем обновить все остальные поля
+                    strSQL = " UPDATE propusk SET id_status = @STATUS WHERE id_propusk = @ID_OLD_P; " + 
+                             " UPDATE sotrudnik SET name = @NAME, id_propusk = @ID_NEW_P, doljnost = @DOLJ " + 
+                             " WHERE id_sotrudnik = ID_S; ";
+                }
+                
+                // обновить все остальные поля
+                strSQL = " UPDATE sotrudnik SET name = @NAME, id_propusk = @ID_NEW_P, doljnost = @DOLJ " + 
+                         " WHERE id_sotrudnik = ID_S; ";
+
+                SQLAdapter.UpdateCommand = new SqlCommand(strSQL, cn);  // команда для обноления создана
+                // зададим значения параметрам 
+                SQLAdapter.UpdateCommand.Parameters.Add("@STATUS", SqlDbType.Int).Value = 0; // статус - свободен
+                SQLAdapter.UpdateCommand.Parameters.Add("@ID_OLD_P", SqlDbType.Int).Value = .Text;
+                SQLAdapter.UpdateCommand.Parameters.Add("@NAME", SqlDbType.VarChar).Value = textBox_sotrudnik_name.Text;
+                SQLAdapter.UpdateCommand.Parameters.Add("@ID_NEW_P", SqlDbType.Int).Value = textBox_sotrudnik_name.Text;
+                SQLAdapter.UpdateCommand.Parameters.Add("@DOLJ", SqlDbType.Int).Value =
+                    Convert.ToInt32(ds.Tables["OS"].Rows[dataGridView2.CurrentRow.Index][0]);
+                SQLAdapter.UpdateCommand.Parameters.Add("@IS_S", SqlDbType.Int).Value =
+                    Convert.ToInt32(ds.Tables["OS"].Rows[dataGridView2.CurrentRow.Index][0]);
+                try
+                {
+                    SQLAdapter.UpdateCommand.ExecuteNonQuery(); // выполним запрос
+                    // если удачно то...
+                    //load_sotrudnik();           // обновим таблицу
+                    MessageBox.Show("Запись успешно обновлена!", "Обновление", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                }
+                catch (Exception ex)
+                {
+                    // если запрос выполнился не удачно то ошибка с инфой
+                    MessageBox.Show(ex.Message, "Ошибка", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                }
+             
+                // обновить все поля как обычно
+              
+                // НАЧАТЬ ОТ СЮДА
                 // запрос на обновление
                 strSQL = " UPDATE os SET name = @NAME WHERE id_os = @ID_OS ";
 

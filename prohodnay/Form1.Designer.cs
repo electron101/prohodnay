@@ -51,6 +51,8 @@
             this.tabPage9 = new System.Windows.Forms.TabPage();
             this.button4 = new System.Windows.Forms.Button();
             this.groupBox2 = new System.Windows.Forms.GroupBox();
+            this.comboBox_sotrudnik_num_propusk = new System.Windows.Forms.ComboBox();
+            this.label3 = new System.Windows.Forms.Label();
             this.button5 = new System.Windows.Forms.Button();
             this.button6 = new System.Windows.Forms.Button();
             this.textBox_sotrudnik_name = new System.Windows.Forms.TextBox();
@@ -104,8 +106,8 @@
             this.label40 = new System.Windows.Forms.Label();
             this.textBox_smena_oldpas = new System.Windows.Forms.TextBox();
             this.label41 = new System.Windows.Forms.Label();
-            this.comboBox1 = new System.Windows.Forms.ComboBox();
-            this.label3 = new System.Windows.Forms.Label();
+            this.textBox_sotrudnik_doljn = new System.Windows.Forms.TextBox();
+            this.label4 = new System.Windows.Forms.Label();
             this.panel1.SuspendLayout();
             this.tabControl2.SuspendLayout();
             this.tabPage_priem_otpusk.SuspendLayout();
@@ -361,7 +363,7 @@
             // button4
             // 
             this.button4.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
-            this.button4.Location = new System.Drawing.Point(957, 218);
+            this.button4.Location = new System.Drawing.Point(957, 216);
             this.button4.Name = "button4";
             this.button4.Size = new System.Drawing.Size(100, 23);
             this.button4.TabIndex = 19;
@@ -372,7 +374,9 @@
             // groupBox2
             // 
             this.groupBox2.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
-            this.groupBox2.Controls.Add(this.comboBox1);
+            this.groupBox2.Controls.Add(this.textBox_sotrudnik_doljn);
+            this.groupBox2.Controls.Add(this.label4);
+            this.groupBox2.Controls.Add(this.comboBox_sotrudnik_num_propusk);
             this.groupBox2.Controls.Add(this.label3);
             this.groupBox2.Controls.Add(this.button5);
             this.groupBox2.Controls.Add(this.button6);
@@ -380,14 +384,31 @@
             this.groupBox2.Controls.Add(this.label2);
             this.groupBox2.Location = new System.Drawing.Point(800, 6);
             this.groupBox2.Name = "groupBox2";
-            this.groupBox2.Size = new System.Drawing.Size(263, 206);
+            this.groupBox2.Size = new System.Drawing.Size(263, 204);
             this.groupBox2.TabIndex = 18;
             this.groupBox2.TabStop = false;
             this.groupBox2.Text = "Добавление/Обновление";
             // 
+            // comboBox_sotrudnik_num_propusk
+            // 
+            this.comboBox_sotrudnik_num_propusk.FormattingEnabled = true;
+            this.comboBox_sotrudnik_num_propusk.Location = new System.Drawing.Point(10, 116);
+            this.comboBox_sotrudnik_num_propusk.Name = "comboBox_sotrudnik_num_propusk";
+            this.comboBox_sotrudnik_num_propusk.Size = new System.Drawing.Size(247, 21);
+            this.comboBox_sotrudnik_num_propusk.TabIndex = 27;
+            // 
+            // label3
+            // 
+            this.label3.AutoSize = true;
+            this.label3.Location = new System.Drawing.Point(7, 100);
+            this.label3.Name = "label3";
+            this.label3.Size = new System.Drawing.Size(91, 13);
+            this.label3.TabIndex = 26;
+            this.label3.Text = "Номер пропуска";
+            // 
             // button5
             // 
-            this.button5.Location = new System.Drawing.Point(157, 171);
+            this.button5.Location = new System.Drawing.Point(157, 172);
             this.button5.Name = "button5";
             this.button5.Size = new System.Drawing.Size(100, 23);
             this.button5.TabIndex = 8;
@@ -397,7 +418,7 @@
             // 
             // button6
             // 
-            this.button6.Location = new System.Drawing.Point(157, 142);
+            this.button6.Location = new System.Drawing.Point(157, 143);
             this.button6.Name = "button6";
             this.button6.Size = new System.Drawing.Size(100, 23);
             this.button6.TabIndex = 7;
@@ -451,7 +472,7 @@
             // button26
             // 
             this.button26.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
-            this.button26.Location = new System.Drawing.Point(957, 191);
+            this.button26.Location = new System.Drawing.Point(957, 182);
             this.button26.Name = "button26";
             this.button26.Size = new System.Drawing.Size(100, 23);
             this.button26.TabIndex = 17;
@@ -470,7 +491,7 @@
             this.groupBox7.Controls.Add(this.label11);
             this.groupBox7.Location = new System.Drawing.Point(800, 6);
             this.groupBox7.Name = "groupBox7";
-            this.groupBox7.Size = new System.Drawing.Size(263, 179);
+            this.groupBox7.Size = new System.Drawing.Size(263, 170);
             this.groupBox7.TabIndex = 16;
             this.groupBox7.TabStop = false;
             this.groupBox7.Text = "Добавление/Обновление";
@@ -494,7 +515,7 @@
             // 
             // button27
             // 
-            this.button27.Location = new System.Drawing.Point(157, 149);
+            this.button27.Location = new System.Drawing.Point(157, 140);
             this.button27.Name = "button27";
             this.button27.Size = new System.Drawing.Size(100, 23);
             this.button27.TabIndex = 8;
@@ -504,7 +525,7 @@
             // 
             // button28
             // 
-            this.button28.Location = new System.Drawing.Point(157, 120);
+            this.button28.Location = new System.Drawing.Point(157, 111);
             this.button28.Name = "button28";
             this.button28.Size = new System.Drawing.Size(100, 23);
             this.button28.TabIndex = 7;
@@ -932,22 +953,21 @@
             this.label41.TabIndex = 9;
             this.label41.Text = "Пароль";
             // 
-            // comboBox1
+            // textBox_sotrudnik_doljn
             // 
-            this.comboBox1.FormattingEnabled = true;
-            this.comboBox1.Location = new System.Drawing.Point(10, 88);
-            this.comboBox1.Name = "comboBox1";
-            this.comboBox1.Size = new System.Drawing.Size(247, 21);
-            this.comboBox1.TabIndex = 27;
+            this.textBox_sotrudnik_doljn.Location = new System.Drawing.Point(10, 77);
+            this.textBox_sotrudnik_doljn.Name = "textBox_sotrudnik_doljn";
+            this.textBox_sotrudnik_doljn.Size = new System.Drawing.Size(247, 20);
+            this.textBox_sotrudnik_doljn.TabIndex = 29;
             // 
-            // label3
+            // label4
             // 
-            this.label3.AutoSize = true;
-            this.label3.Location = new System.Drawing.Point(7, 72);
-            this.label3.Name = "label3";
-            this.label3.Size = new System.Drawing.Size(91, 13);
-            this.label3.TabIndex = 26;
-            this.label3.Text = "Номер пропуска";
+            this.label4.AutoSize = true;
+            this.label4.Location = new System.Drawing.Point(7, 61);
+            this.label4.Name = "label4";
+            this.label4.Size = new System.Drawing.Size(65, 13);
+            this.label4.TabIndex = 28;
+            this.label4.Text = "Должность";
             // 
             // Form1
             // 
@@ -1073,7 +1093,9 @@
         private System.Windows.Forms.Label label8;
         private System.Windows.Forms.Label label9;
         private System.Windows.Forms.DataGridView dataGridView3;
-        private System.Windows.Forms.ComboBox comboBox1;
+        private System.Windows.Forms.ComboBox comboBox_sotrudnik_num_propusk;
         private System.Windows.Forms.Label label3;
+        private System.Windows.Forms.TextBox textBox_sotrudnik_doljn;
+        private System.Windows.Forms.Label label4;
     }
 }
