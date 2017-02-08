@@ -50,9 +50,9 @@
             this.groupBox1.Controls.Add(this.label2);
             this.groupBox1.Controls.Add(this.label1);
             this.groupBox1.Controls.Add(this.listBox1);
-            this.groupBox1.Location = new System.Drawing.Point(153, 18);
+            this.groupBox1.Location = new System.Drawing.Point(163, 18);
             this.groupBox1.Name = "groupBox1";
-            this.groupBox1.Size = new System.Drawing.Size(201, 225);
+            this.groupBox1.Size = new System.Drawing.Size(191, 225);
             this.groupBox1.TabIndex = 0;
             this.groupBox1.TabStop = false;
             this.groupBox1.Text = "Вход";
@@ -61,7 +61,7 @@
             // 
             this.button2.Location = new System.Drawing.Point(105, 193);
             this.button2.Name = "button2";
-            this.button2.Size = new System.Drawing.Size(89, 23);
+            this.button2.Size = new System.Drawing.Size(77, 23);
             this.button2.TabIndex = 5;
             this.button2.Text = "Выход";
             this.button2.UseVisualStyleBackColor = true;
@@ -71,7 +71,7 @@
             // 
             this.button1.Location = new System.Drawing.Point(10, 193);
             this.button1.Name = "button1";
-            this.button1.Size = new System.Drawing.Size(89, 23);
+            this.button1.Size = new System.Drawing.Size(77, 23);
             this.button1.TabIndex = 4;
             this.button1.Text = "Вход";
             this.button1.UseVisualStyleBackColor = true;
@@ -82,7 +82,7 @@
             this.textBox_vx_pas.Location = new System.Drawing.Point(10, 167);
             this.textBox_vx_pas.Name = "textBox_vx_pas";
             this.textBox_vx_pas.PasswordChar = '*';
-            this.textBox_vx_pas.Size = new System.Drawing.Size(184, 20);
+            this.textBox_vx_pas.Size = new System.Drawing.Size(172, 20);
             this.textBox_vx_pas.TabIndex = 3;
             this.textBox_vx_pas.KeyDown += new System.Windows.Forms.KeyEventHandler(this.textBox_vx_pas_KeyDown);
             // 
@@ -109,7 +109,7 @@
             this.listBox1.FormattingEnabled = true;
             this.listBox1.Location = new System.Drawing.Point(10, 40);
             this.listBox1.Name = "listBox1";
-            this.listBox1.Size = new System.Drawing.Size(184, 108);
+            this.listBox1.Size = new System.Drawing.Size(172, 108);
             this.listBox1.TabIndex = 0;
             // 
             // visualStyler2
@@ -121,6 +121,7 @@
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
+            this.BackgroundImage = ((System.Drawing.Image)(resources.GetObject("$this.BackgroundImage")));
             this.BackgroundImageLayout = System.Windows.Forms.ImageLayout.None;
             this.ClientSize = new System.Drawing.Size(366, 255);
             this.Controls.Add(this.groupBox1);
